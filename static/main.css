@@ -1,9 +1,19 @@
 body{
-  margin: 0px;
+  /*Defining Variables*/
   --color-primary: #ff5252;
   --color-light: #ff867f;
   --color-dark: #c50e29;
 
   --text-caption: Robot;
   --text-logo: Impact;
+
+  --color-text: Black;
+
+  --color-bg: rgb(200, 200, 200);
+  --color-article: rgb(255, 255, 255);
+
+
+  margin: 0px;
+  color: var(--color-text);
+  background-color: (--color-bg);
 }
