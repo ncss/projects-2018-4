@@ -1,10 +1,11 @@
 # The style guide
 
 ## Colour scheme
-**Primary:** #ff5252  
-**Light:** #ff867f  
-**Dark:** #c50e29  
-[Link](https://material.io/color/#!/?view.left=0&view.right=0&primary.color=FF5252)
+| Name | Color (hex) | CSS Variable Name |
+|:-|-:|-:|
+|**Primary**| #ff5252 | ``--color-primary``|
+|**Light**| #ff867f | ``--color-light`` |
+|**Dark**| #c50e29 | ``--color-dark``  |
 
 ## Logo content
 
