@@ -1,7 +1,12 @@
 from tornado.ncss import Server, ncssbook_log
 
+f = open('image.png', 'rb')
+image_data = f.read()
+f.close()
+
 def index_handler(response):
-	response.write('sunflower')
+	response.set_header('Content-Type', 'image/png')
+	response.write(image_data)
 	
 def upload(response):
 	response.write('this is the upload page :)')
