@@ -1,4 +1,4 @@
-#web.ncss.life
+# This file provides nodes for the parser to use.
 
 class Node:
     pass
@@ -13,28 +13,37 @@ class GroupNode(Node):
         for node in self.children:
             avar.append(node.returnText(context))
         return strr.join(avar)
-        
+
 class TextNode(Node):
     def __init__(self, text):
         self.text = text
 
     def returnText(self, context):
         return self.text
-    
+
 class PyNode(Node):
     def __init__(self, text):
         self.text = text
 
     def returnText(self, context):
         return eval(self.text, {}, context)
-    
 
-x = PyNode(" name ")
+class IfNode(Node):
+    def __init__(self, predicate, group):
+        self.predicate = predicate
+        self.group = group
 
-g = GroupNode([
-    TextNode("<p>"),
-    PyNode(" name "),
-    TextNode("</p>")
-])
+    def returnText(self, context):
+        return 'Teach me now to IfNode!'
 
-g.returnText({'name': 'Joel'}) # Hope to get <p>Joel</p>
+
+if __name__ == '__main__':
+    x = PyNode(" name ")
+
+    g = GroupNode([
+        TextNode("<p>"),
+        PyNode(" name "),
+        TextNode("</p>")
+    ])
+
+    g.returnText({'name': 'Joel'}) # Hope to get <p>Joel</p>
