@@ -26,7 +26,7 @@ class PyNode(Node):
         self.text = text
 
     def returnText(self, context):
-        return eval(self.text, {}, context)
+        return str(eval(self.text, {}, context))
 
 class IfNode(Node):
     def __init__(self, predicate, group):
