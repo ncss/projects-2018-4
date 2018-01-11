@@ -14,4 +14,5 @@ server.register(r'/', index_handler)
 server.register(r'/upload', upload)
 server.register(r'/profile', profile)
 
-server.run()
+if __name__ == '__main__':
+	server.run()
