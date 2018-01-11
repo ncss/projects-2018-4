@@ -1,0 +1,9 @@
+body{
+  margin: 0px;
+  --color-primary: #ff5252;
+  --color-light: #ff867f;
+  --color-dark: #c50e29;
+
+  --text-caption: Robot;
+  --text-logo: Impact;
+}
