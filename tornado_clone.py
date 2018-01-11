@@ -1,7 +1,7 @@
 from tornado.ncss import Server, ncssbook_log
 
 def index_handler(response):
-	response.write('hello')
+	response.write('sunflower')
 	
 def upload(response):
 	response.write('this is the upload page :)')
