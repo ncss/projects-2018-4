@@ -1,5 +1,7 @@
 from tornado.ncss import Server, ncssbook_log
+from db import Category, Meme
 
+print(Category.get_categories())
 
 
 content_type = ''
