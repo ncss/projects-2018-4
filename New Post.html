@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>New Post</title>
+</head>
+<body>
+  <h1>New Post</h1>
+  <button>Back</button>
+  <div id = "current-meme">
+     <img src="file://C:/Users/gide5947/Pictures/james-2017-07@2x.png">
+	 <p> MEME OF THE WEEK
+	 </p>
+  </div>
+  <form id = "upload-form" method = "post" enctype = "multipart/form-data"> 
+    <input name = "image" type = "file" required>
+	<input name = "caption" type = "text" placeholder = "Enter Caption" required>
+    <input name = "Location" type = "text" placeholder = "Enter Location" required>
+  </form>
+  <button type = "submit" form = "upload-form" value = "Submit">Submit</button>
+</body>
+</html>
