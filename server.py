@@ -1,5 +1,7 @@
 from tornado.ncss import Server, ncssbook_log
 
+from template import render_file
+
 content_type = ''
 filename = ''
 photo = ''
@@ -85,6 +87,16 @@ def meme_image(response, filename):
     photo = f.read()
     response.write(photo)
 
+
+def template_example(response):
+    variables = {
+        'title': 'A template example',
+        'friends': ['Bella', 'Joel', 'Jaxon', 'Owen']
+    }
+    rendered = render_file('pages/example_body.html', variables)
+    response.write(rendered)
+
+
 server = Server()
 
 server.register('/', index_handler)
@@ -94,6 +106,8 @@ server.register('/list_all_photos', list_all_photos)
 server.register(r'/meme_image/(.+)', meme_image)
 #---------------
 server.register('/photo', photo_handler)
+
+server.register('/template_example', template_example)
 
 if __name__ == "__main__":
     server.run()
