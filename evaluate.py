@@ -8,6 +8,7 @@ class GroupNode(Node):
         self.children = children
 
     def returnText(self, context):
+        print(self, self.children, context)
         avar = []
         strr = ""
         for node in self.children:
@@ -34,16 +35,27 @@ class IfNode(Node):
         self.group = group
 
     def returnText(self, context):
-        return 'Teach me now to IfNode!'
+        if eval(self.predicate, {}, context) == True:
+            return self.group.returnText(context)
+        else:
+            return ""
 
+class ForNode(Node):
+    def __init__(self, variable, iterable, groupnode):
+        self.iterable = iterable
+        self.variable = variable
+        self.groupnode = groupnode
+    def returnText(self, context):
+        result = ""
+        for i in eval(self.iterable, {}, context):
+            context[self.variable.strip()] = i
+            print(context)
+            result += self.groupnode.returnText(context)
+        return result
 
 if __name__ == '__main__':
     x = PyNode(" name ")
 
-    g = GroupNode([
-        TextNode("<p>"),
-        PyNode(" name "),
-        TextNode("</p>")
-    ])
-
-    g.returnText({'name': 'Joel'}) # Hope to get <p>Joel</p>
+    # {% for x in blah %}{{ x*x }}{% end for %}
+    g = IfNode()
+    print(g.returnText({'blah': [1, 2, 5]}))
