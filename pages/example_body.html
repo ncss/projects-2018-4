@@ -1,0 +1,15 @@
+{% include pages/example_header.html %}
+{% for i in range(3) %}
+  <h1>{{ i }}</h1>
+  <p>This is the {{ i }} post on this blog</p>
+  {% end for %}
+{% if 1 == 1 %}
+  <p>The condition is true - yay!</p>
+{% end if %}
+<p>You have {{ len(friends) }} friends! They are:</p>
+<ul>
+  {% for friend in friends %}
+    <li>{{ friend }}</li>
+  {% end for %}
+</ul>
+{% include pages/example_footer.html %}

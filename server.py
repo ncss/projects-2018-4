@@ -2,7 +2,7 @@ from tornado.ncss import Server, ncssbook_log
 from db import Category, Meme
 
 print(Category.get_categories())
-
+from template import render_file
 
 content_type = ''
 filename = ''
@@ -56,15 +56,60 @@ def photo_handler(response):
     response.set_header('Content-Type', content_type)
     response.write(photo)
 
+def list_all_photos(response):
+    response.write('Hello World')
+    list_of_photos = ['kevin_photo.jpg', 'dab.jpg', 'salt_bae.jpg']
+
+    output = ''
+    
+    for photofile in list_of_photos:
+        text_filename = photofile.replace('jpg', 'txt')
+        f = open('files/' + text_filename)
+        text = f.readlines()
+        print(text)
+        output += '<div>'
+        output += '<p><b> This an awesome mem page have fun :) </b></p>'
+        output += '<img src="/meme_image/{}">'.format(photofile)
+        output += '<p>' + text[0] + '</p>'
+        output += '<p>' + text[1] + '</p>'
+        output += '<p>' + text[2] + '</p>'
+        output += '<p>' + text[3] + '</p>'
+        output += '</div>'
+        username = text[0]
+        caption = text[1]
+        latitude = text[2]
+        longitude = text[3]
+    
+    response.write(output)
+    
+   
+def meme_image(response, filename):
+    response.set_header('Content-Type', 'image/png')
+    f = open('files/' + filename, 'rb')
+    photo = f.read()
+    response.write(photo)
+
+
+def template_example(response):
+    variables = {
+        'title': 'A template example',
+        'friends': ['Bella', 'Joel', 'Jaxon', 'Owen']
+    }
+    rendered = render_file('pages/example_body.html', variables)
+    response.write(rendered)
+
 
 server = Server()
 
 server.register('/', index_handler)
 server.register('/upload', upload_handler)
 server.register(r'/profile/(.+)', profile_handler)
-
+server.register('/list_all_photos', list_all_photos)
+server.register(r'/meme_image/(.+)', meme_image)
 #---------------
 server.register('/photo', photo_handler)
+
+server.register('/template_example', template_example)
 
 if __name__ == "__main__":
     server.run()

@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "Impact";
+  src: url("impact.ttf");
+}
+
+body{
+  /*Defining Variables*/
+  --color-primary: #ff5252;
+  --color-light: #ff867f;
+  --color-dark: #c50e29;
+
+  --text-caption: Robot;
+  --text-logo: Impact;
+
+  --color-text: Black;
+
+
+  margin: 40px 2px 30px 2px;
+  color: var(--color-text);
+  background-color: (--color-bg);
+
+  /* font-family: Courier New, Courier, monospace; */
+  font-family: var(--text-caption);
+  text-align: center;
+}
+
+
+
+nav{
+  position: fixed;
+  bottom:0px;
+  left:0px;
+  right: 0px;
+
+  height: 30px;
+
+  background: var(--color-dark)
+}
+nav ul{
+  display: flex;
+
+  justify-content: space-around;
+
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+nav ul li{
+  padding: 5px 10px;
+}
+nav .logo{
+  font-family: var(--text-logo)
+}
+nav #navHome a img{
+  height: calc(100% - 10px);
+}
+
+
+
+header{
+  background-color: var(--color-dark);
+  height: 40px;
+}
+header a{
+  text-decoration: none;
+}
+header a h1{
+  font-family: var(--text-logo);
+  font-size: 24pt;
+  font-weight: 500;
+
+  text-align: center;
+
+  color: white;
+}
