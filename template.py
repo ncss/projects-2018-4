@@ -6,6 +6,10 @@ def render(string, context):
     tree = parse_tokens(tokens)
     return tree.returnText(context)
 
+def render_file(path, context):
+    with open(path) as f:
+        return render(f.read(), context)
+
 if __name__ == '__main__':
     print(lex('''{% for i in range(3) %}{{ i }}{% end for %}'''))
     print(render('''{% for i in range(3) %}{{ i }} {% end for %}''', {}))
