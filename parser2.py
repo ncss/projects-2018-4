@@ -10,19 +10,39 @@ OPEN_PERCENT = "{%"
 CLOSE_PERCENT = "%}"
 IF = "if"
 END_IF = "end if"
+FOR = "for"
+IN = "in"
+END_FOR = "end for"
+ITERABLE = "iterable"
 
 class ParseException(Exception):
     pass
 
-parse = [(TEXT, "<p>"), (OPEN_BRACE, "{{"), (TEXT, "name"), (CLOSE_BRACE, "}}"), (TEXT, "</p>"), (OPEN_PERCENT, "{%"), (IF, "if"), (TEXT, "1==user.friends"), (CLOSE_PERCENT, "%}"), (TEXT, "<br/>"), (OPEN_PERCENT, "{%"), (END_IF, "end if"), (CLOSE_PERCENT, "%}"), (TEXT, "<p>"),(OPEN_BRACE, "{{"), (TEXT, "name"), (CLOSE_BRACE, "}}"), (TEXT, "</p>") ]
+parse = [
+    (TEXT, "<p>"), (OPEN_BRACE, "{{"), (TEXT, "name"), (CLOSE_BRACE, "}}"), (TEXT, "</p>"), (OPEN_PERCENT, "{%"), (IF, "if"),
+    (TEXT, "1==user.friends"), (CLOSE_PERCENT, "%}"), (TEXT, "<br/>"), (OPEN_PERCENT, "{%"), (END_IF, "end if"), (CLOSE_PERCENT, "%}"),
+    (TEXT, "<p>"),(OPEN_BRACE, "{{"), (TEXT, "name"), (CLOSE_BRACE, "}}"), (TEXT, "</p>"), (OPEN_PERCENT, "{%"), (FOR, "for"), (TEXT, "i"), (IN, "in"),
+    (ITERABLE, "iterable"), (CLOSE_PERCENT, "%}"), (TEXT, "<p>"), (OPEN_BRACE, "{{"), (TEXT, "name"), (CLOSE_BRACE, "}}"), (TEXT, "</p>"), (OPEN_PERCENT, "{%"),
+    (END_FOR, "end for"), (CLOSE_PERCENT, "%}")]
 
 def if_handler(tokens, pos):
     predicate = tokens[pos + 2][1]
     if tokens[pos + 3][0] != CLOSE_PERCENT:
         raise ParseException("Mwahaha you failure, closed squigglies were not detected. Fool.")
-    groupblock = block(tokens, pos + 4)
+    groupnode, new_pos = block(tokens, pos + 4)
     print("MEMEMEMEMS")
-    return IfNode(predicate, groupblock),  groupblock[1]
+    return IfNode(predicate, groupnode),  new_pos
+
+def for_handler(tokens, pos):
+    if tokens[pos + 3][0] != IN:
+        raise ParseException("What were you thinking‽ Can you write python? No "in" found in for loop.")
+    if tokens[pos + 5][0] != CLOSE_PERCENT:
+        raise ParseException("Mwahaha you failure, closed squigglies were not detected. Fool.")
+    variable = tokens[pos + 2][0]
+    iterable = tokens[pos + 4][0]
+    groupnode, new_pos = block(tokens, pos + 6)
+    return ForNode(variable, iterable, groupnode),  new_pos
+
 
 def python(tokens, pos):
     node = PyNode(tokens[pos + 1][1])
@@ -46,7 +66,11 @@ def block(tokens, pos):
                 new_node, new_pos = if_handler(tokens, pos)
                 pos = new_pos
                 nodes.append(new_node)
-            elif tokens[pos+1][0] == END_IF:
+            elif tokens[pos+1][0] == FOR:
+                new_node, new_pos = for_handler(tokens, pos)
+                pos = new_pos
+                nodes.append(new_node)
+            elif tokens[pos+1][0] == END_IF or tokens[pos+1][0] == END_FOR:
                 pos += 3
                 return GroupNode(nodes), pos
         else:
