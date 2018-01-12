@@ -143,7 +143,7 @@ class Server:
     def set_default_handler(self, default_handler):
         self.default_handler = default_handler
 
-    def run(self):
+    def get_app(self):
         # Randomise the cookie secret upon reload if it's not already set.
         if self.cookie_secret is None:
             m = hashlib.md5()
@@ -189,6 +189,10 @@ class Server:
             default_handler_class=default_handler_class,
             static_path=self.static_path,
         )
+        return app
+
+    def run(self):
+        app = self.get_app()
         app.listen(port=self.port, address=self.hostname)
         ncssbook_log.info('Reloading... waiting for requests on http://{}:{}'.format(self.hostname or 'localhost', self.port))
 
