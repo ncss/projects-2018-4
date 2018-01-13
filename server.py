@@ -115,13 +115,14 @@ def index_example(response):
     response.write(render_file('pages/index.html', {}))
 
 def feed_frontend_dev(response):
-	dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
-	username = 'drjc'
-	location = ''
-	caption = 'Hello world its me'
-	imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
-	rendered = render_file('pages/feed.html', {"dp": dp, 'username': username, 'latitude': latitude, 'longitude': longitude, 'caption': caption, 'image': image})
-	response.write(rendered)
+    dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    username = 'drjc'
+    latitude, longitude = '', ''
+    caption = 'Hello world its me'
+    photo_list = Meme.get_memes_for_category(3)
+    imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
+    rendered = render_file('pages/feed.html', {"dp": dp, 'username': username, 'latitude': latitude, 'longitude': longitude, 'caption': caption, 'image': imgsrc, 'timestamp':'', 'photo_list': photo_list})
+    response.write(rendered)
 
 server = Server()
 
