@@ -86,6 +86,9 @@ class Meme:
         conn.close()
         return lastid
 
+    def get_upvote_count(self):
+        print(Upvote.get_upvotes_for_memes(self.ID))
+        return str(len(Upvote.get_upvotes_for_memes(self.ID)))
 
 class Upvote:
     def __init__(self, ID = None, userid = None, timestamp = None, memeid = None):
@@ -94,10 +97,30 @@ class Upvote:
         self.timestamp = timestamp
         self.memeid = memeid
 
+    @staticmethod
     def create_upvote(userid, timestamp, memeid):
+        print(memeid)
         conn = sqlite3.connect('db/main.db')
         cur = conn.cursor()
+        cur.execute('''
+        INSERT INTO upvote (userid, timestamp, memeid) VALUES (?,?,?)
+        ''', (userid, timestamp, memeid))
+        conn.commit()
+        conn.close()
 
-#    def get_upvotes_for_memes(memeid):
-#        conn = sqlite3.connect('db/main.db')
-#        cur = conn.cursor()
+    @staticmethod
+    def get_upvotes_for_memes(memeid):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        select *
+        from upvote u
+        where memeid == ?
+        ''',(memeid,))
+        upvotes = []
+        for record in cur:
+            print("Hello world!")
+            upvote = Upvote(record[0], record[1], record[2], record[3])
+            upvotes.append(upvote)
+        conn.close()
+        return upvotes
