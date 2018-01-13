@@ -117,7 +117,7 @@ h1{
 }
 #subheader h1 {
   display: inline;
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 button {
   background: #c50e29;
@@ -200,9 +200,9 @@ article.post {
 	padding: 2em 1em;
 }
 
-.spinning{ 
+.spinning{
     transform-origin:50% 50%;
-    animation:2s rotateRight infinite linear; 
+    animation:2s rotateRight infinite linear;
 	max-width:70%;
 }
 
@@ -216,7 +216,11 @@ article.post {
   background: white;
   border-style: solid;
   border-color: black;
-} 
+}
+
+button.upvote span, button.upvote i {
+  vertical-align: middle;
+}
 
 .content {
   background: var(--color-primary);
