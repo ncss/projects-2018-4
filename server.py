@@ -46,7 +46,8 @@ def index_handler(response):
         if cookie_split[0] == 'True':
            response.redirect('/feed')
         else:
-            response.redirect('/login')    else:
+            response.redirect('/login')    
+    else:
         response.redirect('/login')
 
 
