@@ -1,0 +1,63 @@
+{% include pages/header.html %}
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>
+
+  <style>
+    #mapElm{
+      width: 100vw;
+      height: calc(100vh - 85px);
+    }
+    body{
+      overflow: hidden;
+    }
+  </style>
+
+  <div id="mapElm"></div>
+
+
+  <script>
+    var data = [
+    {% for meme in photo_list %}
+      {
+        latitude: "{{ meme.latitude  }}",
+        longitude: "{{ meme.longitude }}",
+        caption: "{{ meme.caption }}",
+        id: "{{ meme.ID }}"
+      }
+    {% end for %}
+    ]
+
+    function initMap(){
+      navigator.geolocation.getCurrentPosition(function(e){
+        map = new google.maps.Map(mapElm, {
+          center: {
+            lat: e.coords.latitude,
+            lng: e.coords.longitude
+          },
+          zoom: 12
+        });
+        
+        for (meme of data){
+          console.log(meme)
+
+          m = new google.maps.Marker({
+            position: {
+              lat: parseFloat(meme.latitude),
+              lng: parseFloat(meme.longitude)
+            },
+            map: map,
+            title: String(meme.caption),
+            url: '/post/'+String(meme.id)
+          });
+
+          google.maps.event.addListener(m, 'click', function() {
+              window.location.href = this.url;
+          });
+        }
+
+        infoWindow = new google.maps.InfoWindow;
+      })
+    }
+  </script>
+
+  </body>
+</html>
