@@ -1,7 +1,7 @@
 {% include pages/header.html %}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>
 <link rel="stylesheet" href="/static/map.css"></link>
 <script src="/static/map.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>
 
 {% for i, meme in enumerate(photo_list) %}
 
@@ -16,7 +16,7 @@
 		</div>
 		<div class = "meta-secondary-container">
 			<p class="caption">Caption: {{ meme.caption }}</p>
-			<p class="timestamp">Time: {{ meme.timestamp }}</p>
+			<p class="timestamp">Time: {{ time_format(meme.timestamp) }}</p>
 		</div>
    </article>
 {% end for %}

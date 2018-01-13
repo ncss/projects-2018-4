@@ -25,6 +25,8 @@
 
   wrapper.onclick = function(){
     wrapper.style.opacity = '0';
+    wrapper.style.right = window.innerWidth+'px';
+    wrapper.style.bottom = window.innerHeight+'px';
     setTimeout(function(){
       document.body.removeChild(wrapper);
     }, 400);
@@ -49,6 +51,8 @@
     setTimeout(function(){
       wrapper.style.display = "block";
       wrapper.style.opacity = "1";
+      wrapper.style.right = "";
+      wrapper.style.bottom = "";
     }, 0)
   }
 

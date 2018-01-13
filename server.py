@@ -1,39 +1,62 @@
 from tornado.ncss import Server, ncssbook_log
 import user
+from datetime import datetime
 from db import Category, Meme, Person
 import base64
 from template import render_file
 import os
 
-def photo_save(user: str, caption: str, lat: str, long: str, content_type, photo):
+
+def format_time(date):
+    from datetime import datetime, timedelta
+    import dateutil.parser
+
+    try:
+        date = dateutil.parser.parse(date) # get ISO 8601 as a datetime object
+        date += timedelta(hours = 11) # add 11 hours
+        cur_time = datetime.utcnow()
+        cur_time += timedelta(hours = 11)
+        if abs(cur_time.hour - date.hour) <= 1:
+            return "Less than 1 hour ago"
+        else:
+            return date.strftime('%I:%M:%S %d/%m/%Y')
+    except ValueError:
+        return date
+
+
+def photo_save(user: str, caption: str, lat: str, long: str, base64blob):
     "This function will take information about a photo and save it to a location."
 
-    photo = "data:{};base64,".format(content_type) + base64.b64encode(photo).decode('ascii')
-    Meme.create_meme_post(photo, caption, lat, long, user, 'timestamp', 3)
 
+    current_time = datetime.utcnow().isoformat()
+    Meme.create_meme_post(base64blob, caption, lat, long, user, current_time, 3)
 
 def login_handler(response):
     user.login_handler(response)
+
+def logout_handler(response):
+    user.logout_handler(response)
 
 def index_handler(response):
     cookie = response.get_secure_cookie('loggedin')
     if cookie:
         response.redirect('/feed')
-        #cookie_split = str(cookie).split(',')
-        # if cookie_split[0] == 'True':
-            
-        # else:
-        #     response.redirect('/login')
+        cookie = cookie.decode('UTF-8')
+        cookie_split = str(cookie).split(',')
+        if cookie_split[0] == 'True':
+           response.redirect('/feed')
+        else:
+            response.redirect('/login')    
     else:
         response.redirect('/login')
-    
+
 
 def profile_handler(response, user):
     profile_picture = '/static/test.png'
     person = Person.get_user_by_username(user)
-
-    print(user)
-    print(person)
+    if not person:
+        response.write('No user found with that name')
+        return
 
     var_dict = {'image':profile_picture, 'name':person.name, 'bio':person.bio}
     rendered = render_file(os.path.join('pages', 'profile.html'), var_dict)
@@ -43,6 +66,8 @@ def profile_handler(response, user):
     # else:
     #     response.write('This is the profile page of: ' + str(user))
 
+def signup_handler(response):
+    user.signup_handler(response)
 #------------------
 
 def meme_image(response, filename):
@@ -70,16 +95,20 @@ def upload_handler(response):
         caption = response.get_field('caption')
         latitude = response.get_field('lat')
         longitude = response.get_field('long')
-        filename, content_type, photo_blob = response.get_file('photo')
+        if response.get_field('resized_image'):
+            base64blob = response.get_field('resized_image')
+        else:
+            filename, content_type, photo_blob = response.get_file('photo')
+            base64blob = "data:{};base64,".format(content_type) + base64.b64encode(photo_blob).decode('ascii')
 
         # Save to the database.
-        photo_save(username, caption, latitude, longitude, content_type, photo_blob)
+        photo_save(username, caption, latitude, longitude, base64blob)
         # Redirect to the feed, where they should see their new photo!
         response.redirect('/feed')
     else:
         # We need to display an upload form.
         variables = {
-            'meme_of_week_img': '/static/test.png'
+            'meme_of_week_img': '/static/dab.jpg'
         }
         rendered = render_file('pages/upload.html', variables)
         response.write(rendered)
@@ -87,16 +116,28 @@ def upload_handler(response):
 def index_example(response):
     response.write(render_file('pages/index.html', {}))
 
+def nearby_handler(response):
+    dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    photo_list = Meme.get_memes_for_category(3)
+    rendered = render_file("pages/nearby.html", {
+        "dp": dp,
+        "photo_list": photo_list
+    })
+    response.write(rendered)
+    pass
+
 # imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
 
 def feed_handler(response):
     dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
     photo_list = Meme.get_memes_for_category(3)
     imglink = "/post"
+    time_func = lambda x: format_time(x)
     rendered = render_file("pages/feed.html", {
         "dp": dp,
         "photo_list": photo_list,
-        "imglink": imglink
+        "imglink": imglink,
+        "time_format": time_func
     })
     response.write(rendered)
 
@@ -116,10 +157,13 @@ server.register('/', index_handler)
 server.register('/feed', feed_handler)
 server.register('/upload', upload_handler)
 server.register('/login', login_handler)
+server.register('/logout', logout_handler)
+server.register('/signup', signup_handler)
 #---------------
 server.register(r'/profile/(.+)', profile_handler)
 server.register(r'/post/(.+)', meme_page_handler)
 server.register('/index_example', index_example)
+server.register('/nearby', nearby_handler)
 
 if __name__ == "__main__":
     server.run()

@@ -67,7 +67,8 @@ class Meme:
         select *
         from memes m
         where catid == ?
-        ''',(catid,)) #Must be a tuple. do not delete the brackets or comma
+        order by id desc
+        ''',(catid,)) # Dont' remove the comma in (catid,), since this must be a tuple.
         memesofcat = []
         for row in cur:
             memesofcat.append(Meme(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
@@ -75,12 +76,12 @@ class Meme:
         return memesofcat
 
     @staticmethod
-    def create_meme_post(image, caption, latitude, longitude, username, timestamp, catid):
+    def create_meme_post(image, caption, latitude, longitude, userid, timestamp, catid):
         conn = sqlite3.connect('db/main.db')
         cur = conn.cursor()
         cur.execute('''
-        INSERT INTO memes (image, caption, locationlat, locationlon, username, timestamp, catid) VALUES (?,?,?,?,?,?,?)
-        ''', (image,caption,latitude, longitude,username,timestamp,catid)) #Must be a tuple. do not delete the brackets or comma
+        INSERT INTO memes (image, caption, locationlat, locationlon, userid, timestamp, catid) VALUES (?,?,?,?,?,?,?)
+        ''', (image, caption, latitude, longitude, userid, timestamp, catid))
         conn.commit()
         lastid = cur.lastrowid
         conn.close()
