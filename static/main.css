@@ -9,7 +9,7 @@ body{
   --color-light: #ff867f;
   --color-dark: #c50e29;
 
-  --text-caption: Robot;
+  --text-caption: Roboto;
   --text-logo: Impact;
 
   --color-text: Black;
@@ -72,4 +72,27 @@ header a h1{
   text-align: center;
 
   color: white;
+}
+
+h1{
+  font-family: var(--text-caption);
+}
+
+#subheader{
+  background-color: #ff0000;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  margin: 20px 0;
+}
+#subheader h1 {
+  display: inline;
+  vertical-align: middle; 
+}
+
+.back-button{
+  position: absolute;
+  left: 10px;
+  height: 60px;
+  width: 60px;
 }
