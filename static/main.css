@@ -109,3 +109,46 @@ h1{
   height: 60px;
   width: 60px;
 }
+
+.meta-primary-container {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+}
+
+.dp {
+	grid-column: 1 / 3;
+}
+
+.username {
+	grid-column: 3 / 8 ;
+}
+
+.location {
+	grid-column: 8 / 12;
+}
+.meta-secondary-container {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+}
+
+.caption {
+	grid-column: 1 / 8;
+}
+
+.timestamp {
+	grid-column: 8 / 12;
+}
+
+img.dp {
+	max-width: 100%;
+	max-height: auto;
+}
+
+img.meme-image {
+	max-width: 100%;
+}
+
+article.post {
+	padding: 2em 1em;
+	font-family: var(--text-caption);
+}

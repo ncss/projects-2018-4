@@ -1,17 +1,18 @@
 {% include pages/header.html %}
+		{% for i in range (10) %}
 	   <article id="article" class="post">
-	   {% for i in range (10) %}
-			<div>
+			<div class = "meta-primary-container">
 				<img class="dp" src="{{ dp }}" />
 				<p class="username">memepo</p>
 				<p class="location">113.2 114.5</p>
 			</div>
-			<div>
-				<img src="{{imgsrc}}" alt= "image" />
+			<div class = "meme-image-container">
+				<img class="meme-image" src="{{imgsrc}}" alt= "image" />
 			</div>
-			<div>
+			<div class = "meta-secondary-container">
 				<p class="caption">Look at this wacky pic!!</p>
 				<p class="timestamp">Sep 12</p>
-			</div>
-		{% end for %}	   
+			</div>	   
 	   </article>
+	   {% end for %}
+	
