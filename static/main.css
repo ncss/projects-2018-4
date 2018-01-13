@@ -16,7 +16,7 @@ body{
   --color-text: Black;
 
 
-  margin: 40px 2px 35px 2px;
+  margin: 40px 2px 45px 2px;
   color: var(--color-text);
   background-color: (--color-bg);
 
@@ -36,7 +36,9 @@ nav{
   left:0px;
   right: 0px;
 
-  height: 35px;
+  z-index: 100;
+
+  height: 45px;
 
   background: var(--color-dark);
 }
@@ -55,11 +57,20 @@ nav ul li{
 nav .logo{
   font-family: var(--text-logo);
 }
-nav #navHome a img{
-  height: 25px;
+nav #navHome{
+  margin-top: 0px;
 }
-nav #navCamera a img{
-  height: 25px;
+nav #navCamera{
+  margin-top: 0px;
+}
+nav a{
+  display: inline-block;
+  height: 45px;
+
+  padding: 0px 20px;
+}
+nav * a img{
+  height: 35px;
 }
 
 
@@ -67,6 +78,10 @@ nav #navCamera a img{
 header{
   background-color: var(--color-dark);
   height: 40px;
+
+  display: block;
+
+  z-index: 100;
 
   position: fixed;
   top: 0px;
@@ -151,12 +166,21 @@ form input{
 	grid-column: 8 / 12;
 }
 
+<<<<<<< HEAD
+=======
+img.dp {
+	max-width: 100%;
+	max-height: auto;
+}
+
+>>>>>>> remotes/origin/master
 img.meme-image {
 	max-width: 100%;
 }
 
 article.post {
 	padding: 2em 1em;
+<<<<<<< HEAD
 }
 
 .profileimage {
@@ -174,4 +198,6 @@ article.post {
   margin: 7px 5px 7px 5px;
   padding: 3px;
   box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+=======
+>>>>>>> remotes/origin/master
 }

@@ -120,6 +120,16 @@ def upload_handler(response):
 def index_example(response):
     response.write(render_file('pages/index.html', {}))
 
+def nearby_handler(response):
+    dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    photo_list = Meme.get_memes_for_category(3)
+    rendered = render_file("pages/nearby.html", {
+        "dp": dp,
+        "photo_list": photo_list
+    })
+    response.write(rendered)
+    pass
+
 # imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
 
 @requires_login
@@ -146,6 +156,7 @@ server.register('/signup', signup_handler)
 server.register(r'/profile/(.+)', profile_handler)
 server.register(r'/meme_image/(.+)', meme_image)
 server.register('/index_example', index_example)
+server.register('/nearby', nearby_handler)
 
 if __name__ == "__main__":
     server.run()
