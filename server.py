@@ -24,12 +24,12 @@ def format_time(date):
         return date
 
 
-def photo_save(user: str, caption: str, lat: str, long: str, content_type, photo):
+def photo_save(user: str, caption: str, lat: str, long: str, base64blob):
     "This function will take information about a photo and save it to a location."
 
-    photo = "data:{};base64,".format(content_type) + base64.b64encode(photo).decode('ascii')
+
     current_time = datetime.utcnow().isoformat()
-    Meme.create_meme_post(photo, caption, lat, long, user, current_time, 3)
+    Meme.create_meme_post(base64blob, caption, lat, long, user, current_time, 3)
 
 def login_handler(response):
     user.login_handler(response)
@@ -89,10 +89,14 @@ def upload_handler(response):
         caption = response.get_field('caption')
         latitude = response.get_field('lat')
         longitude = response.get_field('long')
-        filename, content_type, photo_blob = response.get_file('photo')
+        if response.get_field('resized_image'):
+            base64blob = response.get_field('resized_image')
+        else:
+            filename, content_type, photo_blob = response.get_file('photo')
+            base64blob = "data:{};base64,".format(content_type) + base64.b64encode(photo_blob).decode('ascii')
 
         # Save to the database.
-        photo_save(username, caption, latitude, longitude, content_type, photo_blob)
+        photo_save(username, caption, latitude, longitude, base64blob)
         # Redirect to the feed, where they should see their new photo!
         response.redirect('/feed')
     else:
