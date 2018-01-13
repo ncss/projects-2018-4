@@ -193,7 +193,6 @@ article.post {
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
-  padding-left: 20px;
 }
 
 .username strong {
@@ -220,6 +219,13 @@ article.post {
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-row: 3;
 	display: grid;
+	margin-bottom: 20px;
+}
+
+.meta-secondary-container p {
+	color: grey;
+	font-size: 0.75em;
+	
 }
 
 .meta-primary-container {
@@ -229,7 +235,8 @@ article.post {
 }
 
 .caption {
-	grid-column: 1;
+	grid-column: 1 / 3;
+	text-align: left;
 }
 
 #map2{
