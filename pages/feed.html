@@ -16,8 +16,22 @@
 		</div>
 		<div class = "meta-secondary-container">
 			<p class="caption">Caption: {{ meme.caption }}</p>
-			<p class="timestamp">Time: {{ time_format(meme.timestamp) }}</p>
+      <p class="timestamp">Time: {{ time_format(meme.timestamp) }}</p>
+      <p>Current upvote count: {{ check_upvotes(meme.ID) }}</p>
 		</div>
-	 </article>
-	 <hr>
+    <div>
+      <button type="button" id="{{ meme.ID }}" name="button" class="upvote">Upvote</button>
+    </div>
+   </article>
 {% end for %}
+
+<script>
+  [...document.getElementsByClassName("upvote")].forEach(element => {
+    element.addEventListener("click", function(){
+      fetch("/upvote_meme/" + element.id).then(function(){
+        document.location.reload();
+      })
+    })
+  })
+
+</script>
