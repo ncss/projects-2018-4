@@ -25,8 +25,9 @@ def index_handler(response):
     response.write('<img src="/photo" alt="{}">'.format(filename))  
     
 
+#Does a thing
 def upload_handler(response):
-    f = open('demotemplate.html', 'r')
+    f = open('upload.html', 'r')
     html = f.read()
     global filename, content_type, photo
     username = response.get_field('username')
@@ -96,6 +97,15 @@ def template_example(response):
     rendered = render_file('pages/example_body.html', variables)
     response.write(rendered)
 
+#upload thing idk
+def template_upload(response):
+    variables = {
+        'title': 'A template example',
+        'friends': ['Bella', 'Joel', 'Jaxon', 'Owen'],
+        'src': 'test.png'
+    }
+    rendered = render_file('upload.html', variables)
+    response.write(rendered)
 
 server = Server()
 
@@ -108,6 +118,7 @@ server.register(r'/meme_image/(.+)', meme_image)
 server.register('/photo', photo_handler)
 
 server.register('/template_example', template_example)
+server.register('/uploadexample', template_upload)
 
 if __name__ == "__main__":
     server.run()
