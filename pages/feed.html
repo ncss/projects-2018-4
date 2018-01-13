@@ -14,6 +14,11 @@
 		<div class = "meme-image-container">
 			<a href="{{imglink}}/{{i}}"><img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
 		</div>
+		<div>
+		 <button>
+		 <i class="material-icons upvote">star</i>
+		 </button>
+		</div> 
 		<div class = "meta-secondary-container">
 			<p class="caption" style="text-align: left;"><strong>Caption:</strong> {{ meme.caption }}</p>
 			<p class="timestamp" style="text-align: right;"><strong>Time:</strong> {{ time_format(meme.timestamp) }}</p>
