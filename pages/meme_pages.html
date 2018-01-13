@@ -8,14 +8,14 @@
 <article id="article" class="post">
 	<div class = "meta-primary-container">
 		<img class="dp" src="{{ dp }}" />
-		<p class="username">User: {{ meme.username }}</p>
-		<p class="location" style="cursor: pointer;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )">Meme Location: {{ meme.latitude, meme.longitude }}</p>
+		<p class="username" style="text-align: left;" ><strong>User:</strong> {{ meme.username }}</p>
+		<p class="location" style="cursor: pointer;  text-align: right;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )"><strong>Meme Location:</strong> {{ meme.latitude, meme.longitude }}</p>
 	</div>
 	<div class = "meme-image-container">
 		<img class="meme-image" src="{{ meme.image }}" alt= "image" />
 	</div>
 	<div class = "meta-secondary-container">
-		<p class="caption">Caption: {{ meme.caption }}</p>
-		<p class="timestamp">Time: {{ meme.timestamp }}</p>
+		<p class="caption" style="text-align: left;"><strong>Caption:</strong> {{ meme.caption }}</p>
+		<p class="timestamp" style="text-align: right;"><strong>Time:</strong> {{ meme.timestamp }}</p>
 	</div>
 </article>
