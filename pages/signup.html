@@ -1,0 +1,18 @@
+{% include pages/header.html %}
+<h1>Signup</h1>
+    <form id = 'signup-form' enctype="multipart/form-data" method='post'>
+      <label for='username'>Username: </label>
+      <input name = 'username' type = 'text' placeholder = 'Username'>
+      <br>
+      <br>
+      <label for='password'>Password: </label>
+      <input name = 'password' type = 'password' placeholder = 'Password'>
+      <br>
+      <br>
+      <label for='bio'>Bio: </label>
+      <input name = 'bio' type = 'bio' placeholder = 'Your Bio'>
+      <input name="image" type="file" accept = "image/*;capture=camera" required>
+      <button type="submit" form="signup-form" value="Submit">Signup</button>
+    </form>
+  </body>
+</html>

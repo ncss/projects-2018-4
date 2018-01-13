@@ -24,12 +24,12 @@ def index_handler(response):
         response.redirect('/feed')
         #cookie_split = str(cookie).split(',')
         # if cookie_split[0] == 'True':
-            
+
         # else:
         #     response.redirect('/login')
     else:
         response.redirect('/login')
-    
+
 
 def profile_handler(response, user):
     profile_picture = '/static/test.png'
@@ -46,6 +46,9 @@ def profile_handler(response, user):
     # else:
     #     response.write('This is the profile page of: ' + str(user))
 
+def signup_handler(response):
+    rendered = render_file('pages/signup.html', {})
+    response.write(rendered)
 #------------------
 
 def meme_image(response, filename):
@@ -108,6 +111,7 @@ server.register('/feed', feed_handler)
 server.register('/upload', upload_handler)
 server.register('/login', login_handler)
 server.register('/logout', logout_handler)
+server.register('/signup', signup_handler)
 #---------------
 server.register(r'/profile/(.+)', profile_handler)
 server.register(r'/meme_image/(.+)', meme_image)
