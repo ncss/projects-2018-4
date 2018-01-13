@@ -174,12 +174,6 @@ i.material-icons {
 	transition-duration: 2s;
 	transition-delay: 0s;
 }
-.upvote {
-	color: var(--color-primary);
-	transition-property: background-color;
-	transition-duration: 2s;
-	transition-delay: 0s;
-}
 
 button:focus .material-icons {
 	color: var(--color-dark);
@@ -325,17 +319,10 @@ i.material-icons {
 	transition-duration: 2s;
 	transition-delay: 0s;
 }
-.upvote {
-	color: var(--color-primary);
-	transition-property: background-color;
-	transition-duration: 2s;
-	transition-delay: 0s;
-} 
 
 button:focus .material-icons {
 	color: var(--color-dark);
 	transition-property: color;
 	transition-duration: 2s;
 	transition-delay: 0s;
-	
 }
