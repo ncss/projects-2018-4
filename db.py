@@ -51,8 +51,7 @@ class Category:
         '''(maxid,image,information,name))
         cur.close()
 
-
-class Meme:    
+class Meme:
     def __init__(self, ID = None, image = None, caption = None, latitude = None, longitude = None, username = None, timestamp = None, catid = None):
         self.ID = ID
         self.image = image
