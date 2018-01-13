@@ -1,17 +1,17 @@
 {% include pages/header.html %}
 	   <article id="article" class="post">
-	   {% for i in range (10) %}
+	   {% for meme in photo_list %}
 			<div>
 				<img class="dp" src="{{ dp }}" />
-				<p class="username">"{{ username }}"</p>
-				<p class="location">"{{ latitude,longitude }}"</p>
+				<p class="username">"{{ meme.username }}"</p>
+				<p class="location">"{{ meme.latitude, meme.longitude }}"</p>
 			</div>
 			<div>
-				<img src="{{ image }}" alt= "image" />
+				<img src="{{ meme.image }}" alt= "image" />
 			</div>
 			<div>
-				<p class="caption">"{{ caption }}"</p>
-				<p class="timestamp">"{{ timestamp }}"</p>
+				<p class="caption">"{{ meme.caption }}"</p>
+				<p class="timestamp">"{{ meme.timestamp }}"</p>
 			</div>
-		{% end for %}	   
+		{% end for %}
 	   </article>
