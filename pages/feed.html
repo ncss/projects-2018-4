@@ -1,10 +1,16 @@
 {% include pages/header.html %}
+<link rel="stylesheet" href="/static/map.css"></link>
+<script src="/static/map.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>
+
 {% for meme in photo_list %}
+
+
    <article id="article" class="post">
 		<div class = "meta-primary-container">
 			<img class="dp" src="{{ dp }}" />
 			<a class="username" href="./profile/{{meme.username}}">User: {{ meme.username }}</a>
-			<p class="location">Meme Location: {{ meme.latitude, meme.longitude }}</p>
+			<p class="location" style="cursor: pointer;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )">Meme Location: {{ meme.latitude, meme.longitude }}</p>
 		</div>
 		<div class = "meme-image-container">
 			<img class="meme-image" src="{{ meme.image }}" alt= "image" />

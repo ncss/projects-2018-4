@@ -1,0 +1,26 @@
+.wrapper{
+  display: flex;
+  align-content: center;
+
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+  padding: 35px 20px;
+
+  background-color: rgba(0,0,0, 0.2);
+  opacity: 0;
+
+  transition-property: opacity;
+  transition-duration: 0.4s;
+}
+
+.map{
+  display: flex;
+  align-content: center;
+
+  height: calc(100vh - 70px);
+  width: 100%;
+}
