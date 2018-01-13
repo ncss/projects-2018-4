@@ -1,11 +1,14 @@
 {% include pages/header.html %}
     <form id = 'login-form' enctype="multipart/form-data" method='post'>
       <label for='username'>Username: </label>
-      <input name = 'username' type = 'text' placeholder = 'Username'>
+      <input name = 'username' type = 'text' placeholder = 'Username' autofocus>
       <br>
       <label for='username'>Password: </label>
       <input name = 'password' type = 'password' placeholder = 'Password'>
       <button type="submit" form="login-form" value="Submit">Login</button>
     </form>
+    <form action="/signup">
+      <input type="submit" value="Signup" />
+  </form>
   </body>
 </html>

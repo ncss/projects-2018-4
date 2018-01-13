@@ -6,16 +6,14 @@
 </a>
   <h1>New Post</h1>
 </div>
-<div class = "upload-content">
+<div class = "content">
   <div id = "current-meme">
-    <img class="spinning" src="{{ meme_of_week_img }}">
+    <img class="memeofweekimg" src="{{ meme_of_week_img }}">
     <p>MEME OF THE WEEK</p>
   </div>
   <form id = "upload-form" method = "post" enctype = "multipart/form-data">
-    <input name="username" type="text" placeholder="Username" required>
     <input id = "choose-file" name="photo" type="file" accept = "image/*;capture=camera" required>
     <input name="caption" type="text" placeholder="Enter Caption" required>
-    <input name="location" type="text" placeholder="Enter Location" required>
     <input class = "lat" name="lat" type="text" placeholder="Latitude" readonly>
     <input class = "long" name="long" type="text" placeholder="Longitude" readonly>
   </form>
@@ -100,22 +98,22 @@ function maybeCompress(ev) {
 </script>
 
 <script>
-
-  function getLocation() {
-     navigator.geolocation.getCurrentPosition(showPosition, (error) => {
-
-      const form = document.getElementById("upload-form");
-      form.querySelector('[name="lat"]').value = "UNABLE TO LOAD";
-      form.querySelector('[name="long"]').value = "UNABLE TO LOAD";
-
-     });
-  }
-
-  function showPosition(position) {
-
-    const form = document.getElementById("upload-form");
-    form.querySelector('[name="lat"]').value = position.coords.latitude;
-    form.querySelector('[name="long"]').value = position.coords.longitude;
+  function getLocation(){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(pos){
+        console.log(pos)
+        if (pos && pos.coords){
+          form.querySelector('[name="lat"]').value = pos.coords.latitude;
+          form.querySelector('[name="long"]').value = pos.coords.longitude;
+        }else{
+          form.querySelector('[name="lat"]').value = 0;
+          form.querySelector('[name="long"]').value = 0;
+        }
+      });
+    }else{
+      form.querySelector('[name="lat"]').value = 0;
+      form.querySelector('[name="long"]').value = 0;
+    }
   }
 
   window.addEventListener("load", getLocation)
