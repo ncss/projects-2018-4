@@ -1,5 +1,6 @@
 from tornado.ncss import Server, ncssbook_log
 from db import Category, Meme
+import base64
 
 print(Category.get_categories())
 from template import render_file
@@ -14,6 +15,8 @@ def photo_save(user: str, caption: str, lat: str, long: str, photo):
     '''
     This function will take information about a photo and save it to a location.
     '''
+    print(type(photo))
+    photo = "data:;base64," + base64.b64encode(photo).decode('ascii')
     Meme.create_meme_post(photo, caption, lat, long, user, 'timestamp', 3)
 
     '''
