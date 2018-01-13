@@ -1,9 +1,24 @@
-.map{
-  display: block;
+.wrapper{
+  display: flex;
+
+  align-content: center;
 
   position: fixed;
-  top: 35px;
-  bottom: 35px;
-  left: 10px;
-  right: 10px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+  padding: 35px 20px;
+
+  background-color: rgba(0,0,0, 0.2);
+  opacity: 0;
+
+  transition-property: opacity;
+  transition-duration: 0.4s;
+}
+
+.map{
+  height: calc(100vh - 70px);
+  width: 100%;
 }

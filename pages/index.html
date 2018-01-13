@@ -1,51 +1,12 @@
 {% include pages/header.html %}
+<link rel="stylesheet" href="/static/map.css"></link>
+
 <main>
 
-  <script>
-
-    var wrapper = document.createElement('div');
-    var mapElm = document.createElement('div');
-    var map, infoWindow, marker;
-
-    mapElm.className = "map";
-    document.body.appendChild(mapElm);
-
-    function initMap() {
-      pos = {lat: -34.397, lng: 150.644};
-
-      map = new google.maps.Map(mapElm, {
-        center: pos,
-        zoom: 6
-      });
-      marker = new google.maps.Marker({
-          position: pos,
-          map: map,
-          title: 'Where da meme at'
-      });
-
-      infoWindow = new google.maps.InfoWindow;
-
-      setTimeout(function(){
-        map.style.width = mapElm.style.width = "100vh";
-        map.style.height = mapElm.style.height = "100vw";
-        mapElm.style.display = "block";
-      }, 0)
-    }
-
-    function OpenMap(lat, lng){
-      lat = lat.toFixed(0);
-      lng = lng.toFixed(0);
-      marker.setMap(null);
-
-      marker = new google.maps.Marker({
-          position: {lat: parseFloat(lat), lng: parseFloat(lng)},
-          map: map,
-          title: 'Where da meme at'
-      });
-      map.panTo({lat: parseFloat(lat), lng: parseFloat(lng)});
-    } 
-  </script>
+  <script src="/static/map.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>
+
+  <p onclick="map.open(-36.7584414, 149.768072)">My home</p>
 
   <form enctype="multipart/form-data">
     <input type="file" accept="">
