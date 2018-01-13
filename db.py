@@ -81,7 +81,7 @@ class Meme:
         cur = conn.cursor()
         cur.execute('''
         INSERT INTO memes (image, caption, locationlat, locationlon, userid, timestamp, catid) VALUES (?,?,?,?,?,?,?)
-        ''')
+        ''', (image, caption, latitude, longitude, userid, timestamp, catid))
         conn.commit()
         lastid = cur.lastrowid
         conn.close()

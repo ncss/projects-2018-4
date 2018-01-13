@@ -54,6 +54,9 @@ def index_handler(response):
 def profile_handler(response, user):
     profile_picture = '/static/test.png'
     person = Person.get_user_by_username(user)
+    if not person:
+        response.write('No user found with that name')
+        return
 
     var_dict = {'image':profile_picture, 'name':person.name, 'bio':person.bio}
     rendered = render_file(os.path.join('pages', 'profile.html'), var_dict)
@@ -105,7 +108,7 @@ def upload_handler(response):
     else:
         # We need to display an upload form.
         variables = {
-            'meme_of_week_img': '/static/test.png'
+            'meme_of_week_img': '/static/dab.jpg'
         }
         rendered = render_file('pages/upload.html', variables)
         response.write(rendered)

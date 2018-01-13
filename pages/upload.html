@@ -24,21 +24,23 @@
 </script>
 
 <div id = "subheader">
-  <button class = "back-button">Back</button>
+<a href="/">
+<img class = "back-button" src = "static/back.png">
+</a>
   <h1>New Post</h1>
 </div>
 <div class = "upload-content">
   <div id = "current-meme">
-    <img src="{{ meme_of_week_img }}">
+    <img class="spinning" src="{{ meme_of_week_img }}">
     <p>MEME OF THE WEEK</p>
   </div>
   <form id = "upload-form" method = "post" enctype = "multipart/form-data">
     <input name="username" type="text" placeholder="Username" required>
-    <input name="lat" type="text" placeholder="Latitude" readonly>
-    <input name="long" type="text" placeholder="Longitude" readonly>
-    <input name="photo" id="file_input" type="file" accept = "image/*;capture=camera" required>
+    <input id = "choose-file" name="photo" type="file" accept = "image/*;capture=camera" required>
     <input name="caption" type="text" placeholder="Enter Caption" required>
     <input name="location" type="text" placeholder="Enter Location" required>
+    <input class = "lat" name="lat" type="text" placeholder="Latitude" readonly>
+    <input class = "long" name="long" type="text" placeholder="Longitude" readonly>
   </form>
   <button type="submit" form="upload-form" value="Submit" id="sendbutton">Submit</button>
 </div>
