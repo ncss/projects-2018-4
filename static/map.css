@@ -8,6 +8,8 @@
   left: 0px;
   right: 0px;
 
+  z-index: 110;
+
   padding: 35px 20px;
 
   background-color: rgba(0,0,0, 0.2);
@@ -20,6 +22,8 @@
 .map{
   display: flex;
   align-content: center;
+
+  z-index: 111;
 
   height: calc(100vh - 70px);
   width: 100%;
