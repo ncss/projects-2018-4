@@ -36,12 +36,12 @@ function maybeCompress(ev) {
 
   // Grabs a file object from the upload form, fails if it's not a jpeg.
   let file = fileinput.files[0];
-  if (file.type != 'image/jpeg') {
+  if (file.type == 'image/jpeg') {
+    console.log('Jpeg or png detected')
+  } else {
     console.info('non-jpeg detected')
     form.submit()
     return;
-  } else {
-    console.info('jpeg detected')
   }
 
   // Set up a Reader, and start loading in the data.

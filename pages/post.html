@@ -7,8 +7,8 @@
 
 <article id="article" class="post">
 	<div class = "meta-primary-container">
-		<img class="dp" src="{{ dp }}" />
-		<p class="username" style="text-align: left;" ><strong>User:</strong> {{ meme.username }}</p>
+		<img class="dp" src="{{ meme.user.image }}" />
+		<p class="username" style="text-align: left;" ><strong>User:</strong> {{ meme.user.name }}</p>
 		<p class="location" style="cursor: pointer;  text-align: right;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )"><strong>Meme Location:</strong> {{ meme.latitude, meme.longitude }}</p>
 	</div>
 	<div class = "meme-image-container">

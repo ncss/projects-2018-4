@@ -59,7 +59,7 @@ class Meme:
         self.timestamp = timestamp
         self.catid = catid
         print("USERID WE GET", userid)
-        self.username = Person.get_user_by_id(userid).name
+        self.user = Person.get_user_by_id(userid)
 
     @staticmethod
     def get_memes_for_category(catid):
@@ -114,8 +114,6 @@ class Person:
         for row in cur:
             cur.close()
             return Person(row[0], row[1], row[2], row[3], row[4])
-        cur.close()
-        return None
 
     @staticmethod
     def get_user_by_username(name):
@@ -128,9 +126,7 @@ class Person:
         ''', (name,)) #Must be a tuple. do not delete the brackets or comma
         for row in cur:
             cur.close()
-            return Person(row[0], row[1], row[2], row[3])
-        cur.close()
-        return None
+            return Person(row[0], row[1], row[2], row[3], row[4])
 
     @staticmethod
     def create_user(password, name, bio, image):

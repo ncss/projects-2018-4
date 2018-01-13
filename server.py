@@ -81,13 +81,12 @@ def profile_handler(response, user):
         response.write('No user found with that name')
         return
 
-    var_dict = {'image':profile_picture, 'name':person.name, 'bio':person.bio}
+    var_dict = {
+        'person': person
+    }
     rendered = render_file(os.path.join('pages', 'profile.html'), var_dict)
     response.write(rendered)
-    # if user.lower() == 'liam':
-    #     response.write("LIAM IS AWESOMEEEEE")
-    # else:
-    #     response.write('This is the profile page of: ' + str(user))
+
 
 def signup_handler(response):
     user.signup_handler(response)
@@ -183,10 +182,10 @@ def check_upvote_l(memeid):
     upvote_data = Upvote.get_upvotes_for_memes(memeid)
     return str(len(upvote_data))
 
-def meme_page_handler(response, i):
+def post_handler(response, i):
     dp = 'http://i0.kym-cdn.com/profiles/icons/big/000/132/880/awesome%20face%20shrug.jpg'
     photo_list = Meme.get_memes_for_category(3)
-    rendered = render_file("pages/meme_pages.html", {
+    rendered = render_file("pages/post.html", {
         "dp": dp,
         "meme": photo_list[int(i)]
     })
@@ -201,9 +200,9 @@ server.register('/upload', upload_handler)
 server.register('/login', login_handler)
 server.register('/logout', logout_handler)
 server.register('/signup', signup_handler)
+server.register(r'/post/(.+)', post_handler)
 #---------------
 server.register(r'/profile/(.+)', profile_handler)
-server.register(r'/post/(.+)', meme_page_handler)
 server.register('/index_example', index_example)
 server.register('/nearby', nearby_handler)
 server.register(r'/upvote_meme/(.+)', upvote_meme)

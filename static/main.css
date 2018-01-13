@@ -164,14 +164,6 @@ form input{
   margin: 5px 0px 5px 0px;
 }
 
-article.post {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-	padding: 2em 1em;
-  margin-top: 5px;
-}
-
 img.meme-image {
 	max-width: 100%;
 }
@@ -197,21 +189,14 @@ button:focus .material-icons {
 }
 
 article.post {
+  margin: 0 auto;
 	padding: 2em 1em;
-	display: grid;
-	grid-template-rows: 10% 50% 30%;
 	box-shadow: 0px 5px 0px 0px black;
-}
-
-.meta-primary-container {
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-row: 1;
 }
 
 .dp {
   grid-column: 1; /*Second number is non-inclusive (like splicing a list).*/
 	max-height: 50px;
-  visibility: collapse;
   float: left;
   width: auto;
 }
@@ -286,7 +271,6 @@ img.dp {
 
 img.meme-image {
   max-width: 100%;
-  height: 100%;
 }
 
 .spinning{
@@ -315,11 +299,13 @@ img.meme-image {
 }
 
 .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--color-light);
   color: white;
   font: bold 15px arial, sans-serif;
-  margin: 5%;
-  padding: 5%;
+  margin: 20px auto;
   box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
 }
 
@@ -330,10 +316,6 @@ img.meme-image {
 #signupbut {
   margin-bottom: 25px;
   margin-top: 20px;
-}
-
-article.post {
-	padding: 2em 1em;
 }
 	
 
