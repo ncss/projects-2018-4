@@ -115,10 +115,10 @@ def index_example(response):
 def feed_frontend_dev(response):
 	dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
 	username = 'drjc'
-	location = '101.11, 101.2'
+	location = ''
 	caption = 'Hello world its me'
 	imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
-	rendered = render_file('pages/feed.html', {"dp": dp, 'username': username, 'location': location, 'caption': caption, 'imgsrc': imgsrc})
+	rendered = render_file('pages/feed.html', {"dp": dp, 'username': username, 'latitude': latitude, 'longitude': longitude, 'caption': caption, 'image': image})
 	response.write(rendered)
 
 server = Server()

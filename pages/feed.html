@@ -3,15 +3,15 @@
 	   {% for i in range (10) %}
 			<div>
 				<img class="dp" src="{{ dp }}" />
-				<p class="username">memepo</p>
-				<p class="location">113.2 114.5</p>
+				<p class="username">"{{ username }}"</p>
+				<p class="location">"{{ latitude,longitude }}"</p>
 			</div>
 			<div>
-				<img src="{{imgsrc}}" alt= "image" />
+				<img src="{{ image }}" alt= "image" />
 			</div>
 			<div>
-				<p class="caption">Look at this wacky pic!!</p>
-				<p class="timestamp">Sep 12</p>
+				<p class="caption">"{{ caption }}"</p>
+				<p class="timestamp">"{{ timestamp }}"</p>
 			</div>
 		{% end for %}	   
 	   </article>
