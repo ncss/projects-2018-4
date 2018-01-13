@@ -29,7 +29,7 @@ def index_handler(response):
     
 
 def profile_handler(response, user):
-    profile_picture = '/static/test.png'
+    profile_picture = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
     person = Person.get_user_by_username(user)
 
     print(user)

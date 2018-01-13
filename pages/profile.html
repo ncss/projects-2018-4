@@ -1,5 +1,10 @@
 {% include pages/header.html %}
-<img class="dp" src="{{ image }}" />
-<p class="username">User: {{ name }}</p>
-<p>Bio: {{ bio }}</p>
+
+<div class="content">
+    <img class="profileimage" src="{{ image }}" />
+</div>
+<div class="content">
+    <p class="username"><b>Username:</b> {{ name }}</p>
+    <p><b>Bio:</b> {{ bio }}</p>
+</div>
 </body>
