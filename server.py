@@ -113,9 +113,11 @@ def upload_handler(response):
         longitude = response.get_field('long')
         if response.get_field('resized_image'):
             base64blob = response.get_field('resized_image')
+            print("Got resized meme photo, of %d bytes in base64" % len(base64blob))
         else:
             filename, content_type, photo_blob = response.get_file('photo')
             base64blob = "data:{};base64,".format(content_type) + base64.b64encode(photo_blob).decode('ascii')
+            print("Got non-resized meme photo, of %d bytes in base64" % len(base64blob))
 
         # Save to the database.
         photo_save(username, caption, latitude, longitude, base64blob)

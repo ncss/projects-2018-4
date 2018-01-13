@@ -17,29 +17,29 @@
     <input class = "lat" name="lat" type="text" placeholder="Latitude" readonly>
     <input class = "long" name="long" type="text" placeholder="Longitude" readonly>
   </form>
-  <button type="submit" form="upload-form" value="Submit" id="sendbutton">Submit</button>
+  <button value="Submit" id="sendbutton">Submit</button>
 </div>
 
 <script>
-document.getElementById("upload-form").addEventListener("submit", maybeCompress);
+document.getElementById("sendbutton").addEventListener("click", maybeCompress);
 
 const form = document.getElementById('upload-form');
-const MAX_HEIGHT = 1000;
-const MAX_WIDTH = 1000;
+const fileinput = document.querySelector('input[type=file]')
+const MAX_HEIGHT = 500;
+const MAX_WIDTH = 500;
 
 
 function maybeCompress(ev) {
+  ev.preventDefault()
   document.getElementById("sendbutton").disabled = "false";
 
   console.info('compress')
 
   // Grabs a file object from the upload form, fails if it's not a jpeg.
-  let fileinput = document.getElementById('file_input');
   let file = fileinput.files[0];
   if (file.type != 'image/jpeg') {
-    return true;
-  } else {
-    ev.preventDefault();
+    form.submit();
+    return;
   }
 
   // Set up a Reader, and start loading in the data.
