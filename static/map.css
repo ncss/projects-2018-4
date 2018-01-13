@@ -1,6 +1,5 @@
 .wrapper{
   display: flex;
-
   align-content: center;
 
   position: fixed;
@@ -19,9 +18,9 @@
 }
 
 .map{
+  display: flex;
+  align-content: center;
+
   height: calc(100vh - 70px);
   width: 100%;
-
-  max-height: 1000px;
-  max-width: 1000px;
 }
