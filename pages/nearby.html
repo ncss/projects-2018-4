@@ -8,6 +8,7 @@
         latitude: "{{ meme.latitude  }}",
         longitude: "{{ meme.longitude }}",
         caption: "{{ meme.caption }}",
+        id: "{{ meme.ID }}",
       },
     {% end for %}
     ]
@@ -37,8 +38,6 @@
       });
       
       for (meme of data){
-        console.log(meme);
-
         marker = new google.maps.Marker({
           position: {
             lat: parseFloat(meme.latitude),
@@ -46,6 +45,12 @@
           },
           map: map,
           title: meme.caption
+        });
+
+        marker.addListener('click', function() {
+          window.location = "/post/"+meme.id;
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
         });
       }
 
