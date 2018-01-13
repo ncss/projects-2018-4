@@ -9,8 +9,14 @@ filename = ''
 photo = ''
 
 def photo_save(user: str, caption: str, lat: str, long: str, photo):
+
+    
     '''
     This function will take information about a photo and save it to a location.
+    '''
+    new_meme = Meme()
+    new_meme.create_meme_post(photo, caption, lat, long, user, 'timestamp', 0)
+    
     '''
     with open('files\{} - {}.txt'.format(user, caption), 'w+') as file:
         file.write(user + "\n")
@@ -20,6 +26,7 @@ def photo_save(user: str, caption: str, lat: str, long: str, photo):
 
     with open('files\{} - {}.jpg'.format(user, caption), 'wb+') as photo_file:
         photo_file.write(photo)
+    '''
 
 
 def index_handler(response):
