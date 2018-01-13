@@ -16,7 +16,7 @@ body{
   --color-text: Black;
 
 
-  margin: 40px 2px 35px 2px;
+  margin: 40px 2px 45px 2px;
   color: var(--color-text);
   background-color: (--color-bg);
 
@@ -35,6 +35,8 @@ nav{
   bottom:0px;
   left:0px;
   right: 0px;
+
+  z-index: 10000;
 
   height: 45px;
 
@@ -79,6 +81,8 @@ nav #navCamera a img{
 header{
   background-color: var(--color-dark);
   height: 40px;
+
+  z-index: 10000;
 
   position: fixed;
   top: 0px;
