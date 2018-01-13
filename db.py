@@ -42,7 +42,7 @@ class Category:
         cur = conn.cursor()
         cur.execute('''
         INSERT INTO category (image, information, name) VALUES (?,?,?)
-        '''(image,information,name))
+        '''(image,information,name)) #Must be a tuple. do not delete the brackets or comma
         conn.commit()
         cur.close()
         conn.close()
@@ -67,7 +67,7 @@ class Meme:
         select *
         from memes m
         where catid == ?
-        ''',(catid,))
+        ''',(catid,)) #Must be a tuple. do not delete the brackets or comma
         memesofcat = []
         for row in cur:
             memesofcat.append(Meme(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
@@ -80,7 +80,58 @@ class Meme:
         cur = conn.cursor()
         cur.execute('''
         INSERT INTO memes (image, caption, locationlat, locationlon, username, timestamp, catid) VALUES (?,?,?,?,?,?,?)
-        ''', (image,caption,latitude, longitude,username,timestamp,catid))
+        ''', (image,caption,latitude, longitude,username,timestamp,catid)) #Must be a tuple. do not delete the brackets or comma
+        conn.commit()
+        lastid = cur.lastrowid
+        conn.close()
+        return lastid
+
+
+class Person:
+    def __init__(self, id = None, password = None, name = None, bio = None, image = None):
+        self.id = id
+        self.password = password
+        self.name = name
+        self.bio = bio
+        self.image = image
+
+    @staticmethod
+    def get_user_by_id(id):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        select *
+        from person
+        where id = ?;
+        ''', (id,)) #Must be a tuple. do not delete the brackets or comma
+        for row in cur:
+            cur.close()
+            return Person(row[0], row[1], row[2], row[3], row[4])
+        cur.close()
+        return None
+
+    @staticmethod
+    def get_user_by_username(name):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        select *
+        from person
+        where name = ?;
+        ''', (name,)) #Must be a tuple. do not delete the brackets or comma
+        for row in cur:
+            cur.close()
+            return Person(row[0], row[1], row[2], row[3])
+        cur.close()
+        return None
+
+    @staticmethod
+    def create_user(password, name, bio, image):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        INSERT INTO person (password, name, bio, image) VALUES (?,?,?,?)
+        ''', (password, name, bio, image))
         conn.commit()
         lastid = cur.lastrowid
         conn.close()

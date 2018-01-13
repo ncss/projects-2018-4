@@ -1,4 +1,5 @@
 {% include pages/header.html %}
+
 <div id = "subheader">
   <button class = "back-button"><img src="http://static/back.png"/></button>
   <h1>New Post</h1>
@@ -9,12 +10,43 @@
     <p>MEME OF THE WEEK</p>
   </div>
   <form id = "upload-form" method = "post" enctype = "multipart/form-data"> 
-    <input name="username" type="text" placeholder="Username">
-    <input name="lat" type="text" placeholder="Latitude">
-    <input name="long" type="text" placeholder="Longitude">
+    <input name="username" type="text" placeholder="Username" required>
+    <input name="lat" type="text" placeholder="Latitude" readonly>
+    <input name="long" type="text" placeholder="Longitude" readonly>
     <input name="photo" type="file" accept = "image/*;capture=camera" required>
     <input name="caption" type="text" placeholder="Enter Caption" required>
     <input name="location" type="text" placeholder="Enter Location" required>
   </form>
-  <button type="submit" form="upload-form" value="Submit">Submit</button>
+  <button type="submit" form="upload-form" value="Submit" id="sendbutton">Submit</button>
 </div>
+<script>
+  document.getElementById("upload-form").addEventListener("submit", disableButton);
+
+  function disableButton() {
+    document.getElementById("sendbutton").disabled = "false";
+    return true;
+  }
+</script>
+
+<script>
+
+  function getLocation() {
+     navigator.geolocation.getCurrentPosition(showPosition, (error) => {
+
+      const form = document.getElementById("upload-form");
+      form.querySelector('[name="lat"]').value = "UNABLE TO LOAD";
+      form.querySelector('[name="long"]').value = "UNABLE TO LOAD";
+
+     });
+  }
+
+  function showPosition(position) {
+
+    const form = document.getElementById("upload-form");
+    form.querySelector('[name="lat"]').value = position.coords.latitude;
+    form.querySelector('[name="long"]').value = position.coords.longitude;
+  }
+
+  window.addEventListener("load", getLocation)
+
+</script>
