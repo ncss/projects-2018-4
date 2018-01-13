@@ -34,25 +34,25 @@ def photo_save(user: str, caption: str, lat: str, long: str, base64blob):
 def login_handler(response):
     user.login_handler(response)
 
+def logout_handler(response):
+    user.logout_handler(response)
+
 def index_handler(response):
     cookie = response.get_secure_cookie('loggedin')
     if cookie:
         response.redirect('/feed')
-        #cookie_split = str(cookie).split(',')
-        # if cookie_split[0] == 'True':
-
-        # else:
-        #     response.redirect('/login')
-    else:
+        cookie = cookie.decode('UTF-8')
+        cookie_split = str(cookie).split(',')
+        if cookie_split[0] == 'True':
+           response.redirect('/feed')
+        else:
+            response.redirect('/login')    else:
         response.redirect('/login')
 
 
 def profile_handler(response, user):
     profile_picture = '/static/test.png'
     person = Person.get_user_by_username(user)
-
-    print(user)
-    print(person)
 
     var_dict = {'image':profile_picture, 'name':person.name, 'bio':person.bio}
     rendered = render_file(os.path.join('pages', 'profile.html'), var_dict)
@@ -62,6 +62,8 @@ def profile_handler(response, user):
     # else:
     #     response.write('This is the profile page of: ' + str(user))
 
+def signup_handler(response):
+    user.signup_handler(response)
 #------------------
 
 def meme_image(response, filename):
@@ -129,6 +131,8 @@ server.register('/', index_handler)
 server.register('/feed', feed_handler)
 server.register('/upload', upload_handler)
 server.register('/login', login_handler)
+server.register('/logout', logout_handler)
+server.register('/signup', signup_handler)
 #---------------
 server.register(r'/profile/(.+)', profile_handler)
 server.register(r'/meme_image/(.+)', meme_image)
