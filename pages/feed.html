@@ -8,20 +8,27 @@
    <article id="article" class="post">
 		<div class = "meta-primary-container">
 			<img class="dp" src="{{ dp }}" />
-			<a class="username" href="./profile/{{meme.username}}">User: {{ meme.username }}</a>
-			<p class="location" style="cursor: pointer;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )">Meme Location: {{ meme.latitude, meme.longitude }}</p>
+			<a class="username" style="text-align: left;" href="./profile/{{meme.username}}"><strong>User: {{ meme.username }}</strong></a>
+			<p class="location" style="cursor: pointer; text-align: right;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )"><img id = 'map2' src='static/icons/map2.png'> View Location</p>
+			<p class="upvote">{{ check_upvotes(meme.ID) }}</p>
+			<div class="meme-image-container">
+				<a href="{{ meme.image }}/{{i}}">todo fixme<img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
+			</div>
 		</div>
-		<div class = "meme-image-container">
-			<a href="{{imglink}}/{{i}}"><img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
+		<div>
+		 <button>
+		 <i class="material-icons upvote">star</i>
+		 </button>
 		</div>
 		<div class = "meta-secondary-container">
-			<p class="caption">Caption: {{ meme.caption }}</p>
-      <p class="timestamp">Time: {{ time_format(meme.timestamp) }}</p>
-      <p>Current upvote count: {{ check_upvotes(meme.ID) }}</p>
+			<p class="caption" style="text-align: left;">Caption: {{ meme.caption }}</p>
+			<p class="timestamp" style="text-align: left;">Time: {{ time_format(meme.timestamp) }}</p>
+      <!--<p>Current upvote count: {{ check_upvotes(meme.ID) }}</p>-->
 		</div>
     <div>
       <button type="button" id="{{ meme.ID }}" name="button" class="upvote">Upvote</button>
-    </div>
+		</div>
+		<hr>
    </article>
 {% end for %}
 

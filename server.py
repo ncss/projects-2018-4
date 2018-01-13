@@ -23,13 +23,31 @@ def format_time(date):
     except ValueError:
         return date
 
+def get_user_from_cookie(response):
+    cookie = response.get_secure_cookie('loggedin')
+    if cookie:
+        cookie = cookie.decode('UTF-8')
+        cookie_split = str(cookie).split(',')
+        return cookie_split[1]
+    else:
+        return 'Username not defined in cookie'
+
+def nearby_handler(response):
+    dp = 'fixme'
+    photo_list = Meme.get_memes_for_category(3)
+    rendered = render_file("pages/nearby.html", {
+        "dp": dp,
+        "photo_list": photo_list,
+    })
+    response.write(rendered)
+
 
 def photo_save(user: str, caption: str, lat: str, long: str, base64blob):
     "This function will take information about a photo and save it to a location."
 
+    photo = "data:{};base64,".format(content_type) + base64.b64encode(photo).decode('ascii')
+    Meme.create_meme_post(photo, caption, lat, long, user, 'timestamp', 3)
 
-    current_time = datetime.utcnow().isoformat()
-    Meme.create_meme_post(base64blob, caption, lat, long, user, current_time, 3)
 
 def login_handler(response):
     user.login_handler(response)
@@ -58,11 +76,8 @@ def index_handler(response):
 
 @requires_login
 def profile_handler(response, user):
-    profile_picture = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    profile_picture = '/static/test.png'
     person = Person.get_user_by_username(user)
-    if not person:
-        response.write('No user found with that name')
-        return
 
     var_dict = {'image':profile_picture, 'name':person.name, 'bio':person.bio}
     rendered = render_file(os.path.join('pages', 'profile.html'), var_dict)
@@ -92,30 +107,25 @@ def template_example(response):
     rendered = render_file('pages/example_body.html', variables)
     response.write(rendered)
 
-@requires_login
 def upload_handler(response):
     """Handles displaying the upload form, as well as recieving the data and
     entering it into the database."""
-    if response.get_field("username"):
+    if response.get_field("caption"):
         # The "username" field is not empty, so we are recieving data
-        username = response.get_field('username')
+        username = get_user_from_cookie(response)
         caption = response.get_field('caption')
         latitude = response.get_field('lat')
         longitude = response.get_field('long')
-        if response.get_field('resized_image'):
-            base64blob = response.get_field('resized_image')
-        else:
-            filename, content_type, photo_blob = response.get_file('photo')
-            base64blob = "data:{};base64,".format(content_type) + base64.b64encode(photo_blob).decode('ascii')
+        filename, content_type, photo_blob = response.get_file('photo')
 
         # Save to the database.
-        photo_save(username, caption, latitude, longitude, base64blob)
+        photo_save(username, caption, latitude, longitude, content_type, photo_blob)
         # Redirect to the feed, where they should see their new photo!
         response.redirect('/feed')
     else:
         # We need to display an upload form.
         variables = {
-            'meme_of_week_img': '/static/dab.jpg'
+            'meme_of_week_img': '/static/memeOTW.jpg'
         }
         rendered = render_file('pages/upload.html', variables)
         response.write(rendered)
@@ -131,13 +141,11 @@ def nearby_handler(response):
         "photo_list": photo_list
     })
     response.write(rendered)
-    pass
 
 # imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
 
-@requires_login
 def feed_handler(response):
-    dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    dp = 'http://i0.kym-cdn.com/profiles/icons/big/000/132/880/awesome%20face%20shrug.jpg'
     photo_list = Meme.get_memes_for_category(3)
     check_upvotes_l = lambda x: check_upvote_l(x)
     imglink = "/post"
@@ -166,14 +174,13 @@ def check_upvote_l(memeid):
     return str(len(upvote_data))
 
 def meme_page_handler(response, i):
-    dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    dp = 'http://i0.kym-cdn.com/profiles/icons/big/000/132/880/awesome%20face%20shrug.jpg'
     photo_list = Meme.get_memes_for_category(3)
     rendered = render_file("pages/meme_pages.html", {
         "dp": dp,
         "meme": photo_list[int(i)]
     })
     response.write(rendered)
-
 
 server = Server()
 
@@ -185,7 +192,7 @@ server.register('/logout', logout_handler)
 server.register('/signup', signup_handler)
 #---------------
 server.register(r'/profile/(.+)', profile_handler)
-server.register(r'/post/(.+)', meme_page_handler)
+server.register(r'/meme_image/(.+)', meme_image)
 server.register('/index_example', index_example)
 server.register('/nearby', nearby_handler)
 server.register(r'/upvote_meme/(.+)', upvote_meme)

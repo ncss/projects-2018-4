@@ -41,25 +41,23 @@ def signup_handler(response):
     print(username, password, bio, photo)
     if username:
         database_signup_handler(response, username, password, bio, photo, content_type)
-        response.redirect('/login')
+        if database_login_handler(username, password, response):
+            cookie = 'True,'+username
+            response.set_secure_cookie('loggedin', cookie)
+            response.redirect('/')
     else:
         rendered = render_file('pages/signup.html', {})
         response.write(rendered)
 
 
 def database_signup_handler(response, user, password, bio, photo, type):
-    print("")
     image = "data:{};base64,".format(type) + base64.b64encode(photo).decode('ascii')
-    print(Person.get_user_by_username(user))
     p = Person.get_user_by_username(user)
     if p == None:
-        print('Username not detected')
         Person.create_user(password, user, bio, image)
     elif p.name == user:
-        print('Username detected')
         response.redirect('/signup')
     else:
-        print('Username not detected')
         Person.create_user(password, user, bio, image)
 
 
