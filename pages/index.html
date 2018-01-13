@@ -1,9 +1,12 @@
 {% include pages/header.html %}
+<link rel="stylesheet" href="/static/map.css"></link>
+
 <main>
-  This is an example home page. Update me!
-  {% for i in range(30) %}
-    <p>{{ i*i }}</p>
-  {% end for %}
+
+  <script src="/static/map.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>
+
+  <p onclick="map.open(-34.397, 150.644)">My home</p>
 
   <form enctype="multipart/form-data">
     <input type="file" accept="">
