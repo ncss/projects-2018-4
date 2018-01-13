@@ -166,21 +166,17 @@ form input{
 	grid-column: 8 / 12;
 }
 
-<<<<<<< HEAD
-=======
 img.dp {
 	max-width: 100%;
 	max-height: auto;
 }
 
->>>>>>> remotes/origin/master
 img.meme-image {
 	max-width: 100%;
 }
 
 article.post {
 	padding: 2em 1em;
-<<<<<<< HEAD
 }
 
 .profileimage {
@@ -198,6 +194,4 @@ article.post {
   margin: 7px 5px 7px 5px;
   padding: 3px;
   box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
-=======
->>>>>>> remotes/origin/master
 }
