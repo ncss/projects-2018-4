@@ -15,7 +15,7 @@ body{
   --color-text: Black;
 
 
-  margin: 40px 2px 30px 2px;
+  margin: 45px 2px 40px 2px;
   color: var(--color-text);
   background-color: (--color-bg);
 
