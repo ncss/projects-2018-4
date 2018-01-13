@@ -36,16 +36,15 @@
   function OpenMap(lat, lng){
     document.body.appendChild(wrapper);
 
-    lat = lat.toFixed(0);
-    lng = lng.toFixed(0);
+    data = {lat: parseFloat(lat), lng: parseFloat(lng)}
     marker.setMap(null);
 
     marker = new google.maps.Marker({
-        position: {lat: parseFloat(lat), lng: parseFloat(lng)},
+        position: data,
         map: map,
         title: 'Where da meme at'
     });
-    map.panTo({lat: parseFloat(lat), lng: parseFloat(lng)});
+    map.panTo(data);
 
     setTimeout(function(){
       wrapper.style.display = "block";
