@@ -53,7 +53,7 @@
       wrapper.style.opacity = "1";
       wrapper.style.right = "";
       wrapper.style.bottom = "";
-    }, 0)
+    }, 1000)
   }
 
   window.map = {

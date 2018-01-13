@@ -1,7 +1,5 @@
 {% include pages/header.html %}
 <link rel="stylesheet" href="/static/map.css"></link>
-<script src="/static/map.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>
 
 
 
@@ -19,3 +17,6 @@
 		<p class="timestamp" style="text-align: right;"><strong>Time:</strong> {{ meme.timestamp }}</p>
 	</div>
 </article>
+
+<script src="/static/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>

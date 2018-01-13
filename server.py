@@ -184,10 +184,9 @@ def check_upvote_l(memeid):
 
 def post_handler(response, i):
     dp = 'http://i0.kym-cdn.com/profiles/icons/big/000/132/880/awesome%20face%20shrug.jpg'
-    photo_list = Meme.get_memes_for_category(3)
     rendered = render_file("pages/post.html", {
         "dp": dp,
-        "meme": photo_list[int(i)]
+        "meme": Meme.get_meme_from_id(i)
     })
     response.write(rendered)
 
