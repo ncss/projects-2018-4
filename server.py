@@ -96,6 +96,9 @@ def template_example(response):
     rendered = render_file('pages/example_body.html', variables)
     response.write(rendered)
 
+def index_example(response):
+    response.write(render_file('pages/index.html', {}))
+
 
 server = Server()
 
@@ -108,6 +111,7 @@ server.register(r'/meme_image/(.+)', meme_image)
 server.register('/photo', photo_handler)
 
 server.register('/template_example', template_example)
+server.register('/index_example', index_example)
 
 if __name__ == "__main__":
     server.run()
