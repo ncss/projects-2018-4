@@ -124,3 +124,15 @@ class Person:
             return Category(row[0], row[1], row[2], row[3])
         cur.close()
         return None
+
+    @staticmethod
+    def create_meme_post(password, name, bio, image):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        INSERT INTO person (password, name, bio, image) VALUES (?,?,?,?)
+        ''', (password, name, bio, image))
+        conn.commit()
+        lastid = cur.lastrowid
+        conn.close()
+        return lastid
