@@ -331,3 +331,28 @@ img.meme-image {
   margin-bottom: 25px;
   margin-top: 20px;
 }
+article.post {
+	padding: 2em 1em;
+}
+	
+
+i.material-icons {
+	color: var(--color-green);
+	transition-property: color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+}
+.upvote {
+	color: var(--color-primary);
+	transition-property: background-color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+} 
+
+button:focus .material-icons {
+	color: var(--color-dark);
+	transition-property: color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+	
+}
