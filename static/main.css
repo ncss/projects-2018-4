@@ -222,6 +222,7 @@ article.post {
 .meta-secondary-container {
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-row: 3;
+	display: grid;
 }
 
 .caption {
