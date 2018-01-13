@@ -85,3 +85,11 @@ class Meme:
         lastid = cur.lastrowid
         conn.close()
         return lastid
+
+
+class Upvote:
+    def __init__(self, ID = None, userid = None, timestamp = None, memeid = None)
+    self.ID = ID
+    self.userid = userid
+    self.timestamp = timestamp
+    self.memeid = memeid
