@@ -1,3 +1,5 @@
 .pyc
 __pycache__
 /files/
+/main.db
+/db/main.db
