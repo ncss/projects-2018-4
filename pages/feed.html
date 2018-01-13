@@ -8,8 +8,8 @@
    <article id="article" class="post">
 		<div class = "meta-primary-container">
 			<img class="dp" src="{{ dp }}" />
-			<a class="username" href="./profile/{{meme.username}}">User: {{ meme.username }}</a>
-			<p class="location" style="cursor: pointer;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )">View Location</p>
+			<a class="username" href="./profile/{{meme.username}}"><strong>User: {{ meme.username }}</strong></a>
+			<p class="location" style="cursor: pointer;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )"><img id = 'map2' src='static/icons/map2.png'> View Location</p>
 		</div>
 		<div class = "meme-image-container">
 			<a href="{{imglink}}/{{i}}"><img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
