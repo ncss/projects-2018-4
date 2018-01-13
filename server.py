@@ -45,8 +45,7 @@ def profile_handler(response, user):
     #     response.write('This is the profile page of: ' + str(user))
 
 def signup_handler(response):
-    rendered = render_file('pages/signup.html', {})
-    response.write(rendered)
+    user.signup_handler(response)
 #------------------
 
 def meme_image(response, filename):
