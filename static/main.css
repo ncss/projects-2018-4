@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Impact";
-  src: url("impact.ttf");
+  src: url("/static/impact.ttf");
 }
 
 body{
@@ -9,13 +9,13 @@ body{
   --color-light: #ff867f;
   --color-dark: #c50e29;
 
-  --text-caption: Robot;
+  --text-caption: Roboto;
   --text-logo: Impact;
 
   --color-text: Black;
 
 
-  margin: 40px 2px 30px 2px;
+  margin: 45px 0px 40px 0px;
   color: var(--color-text);
   background-color: (--color-bg);
 
@@ -24,6 +24,9 @@ body{
   text-align: center;
 }
 
+p{
+  font-family: var(--text-caption);
+}
 
 
 nav{
@@ -32,9 +35,9 @@ nav{
   left:0px;
   right: 0px;
 
-  height: 30px;
+  height: 35px;
 
-  background: var(--color-dark)
+  background: var(--color-dark);
 }
 nav ul{
   display: flex;
@@ -49,10 +52,13 @@ nav ul li{
   padding: 5px 10px;
 }
 nav .logo{
-  font-family: var(--text-logo)
+  font-family: var(--text-logo);
 }
 nav #navHome a img{
-  height: calc(100% - 10px);
+  height: 25px;
+}
+nav #navCamera a img{
+  height: 25px;
 }
 
 
@@ -60,6 +66,11 @@ nav #navHome a img{
 header{
   background-color: var(--color-dark);
   height: 40px;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
 }
 header a{
   text-decoration: none;
@@ -71,5 +82,41 @@ header a h1{
 
   text-align: center;
 
+  margin: 0px;
+
   color: white;
+}
+
+h1{
+  font-family: var(--text-caption);
+}
+
+#subheader{
+  background-color: #ff0000;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  margin: 20px 0px 20px 0px;
+}
+#subheader h1 {
+  display: inline;
+  vertical-align: middle; 
+}
+
+.back-button{
+  position: absolute;
+  left: 10px;
+  height: 60px;
+  width: 60px;
+}
+.upload-content{
+  margin: 10px;
+  padding: 10px;
+  background-color: pink;
+  align-content: center;
+}
+
+form input{
+  width:100%;
+  margin-top: 5px;
 }

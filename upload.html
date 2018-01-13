@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>New Post</title>
-</head>
-<body>
+{% include pages/header.html %}
+</body>
+<div id = "subheader">
+  <button class = "back-button">Back</button>
   <h1>New Post</h1>
-  <button>Back</button>
+</div>
+<div class = "upload-content">
   <div id = "current-meme">
-     <img src="{{src}}">
-	 <p> MEME OF THE WEEK
-	 </p>
+    <img src="{{src}}">
+    <p>MEME OF THE WEEK</p>
   </div>
   <form id = "upload-form" method = "post" enctype = "multipart/form-data"> 
     <input name = "photo" type = "file" accept = "image/*;capture=camera" required>
-	<input name = "caption" type = "text" placeholder = "Enter Caption" required>
+    <input name = "caption" type = "text" placeholder = "Enter Caption" required>
     <input name = "location" type = "text" placeholder = "Enter Location" required>
   </form>
   <button type = "submit" form = "upload-form" value = "Submit">Submit</button>
-</body>
-</html>
+</div>

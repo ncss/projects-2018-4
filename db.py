@@ -29,7 +29,7 @@ class Category:
         select *
         from category
         where id = ?;
-        ''', (ID,))
+        ''', ID)
         for row in cur:
             cur.close()
             return Category(row[0], row[1], row[2], row[3])

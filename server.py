@@ -33,8 +33,9 @@ def index_handler(response):
     response.write('<img src="/photo" alt="{}">'.format(filename))
 
 
+#Does a thing
 def upload_handler(response):
-    f = open('demotemplate.html', 'r')
+    f = open('upload.html', 'r')
     html = f.read()
     global filename, content_type, photo
     username = response.get_field('username')
@@ -97,6 +98,27 @@ def template_example(response):
     rendered = render_file('pages/example_body.html', variables)
     response.write(rendered)
 
+#upload thing idk
+def template_upload(response):
+    variables = {
+        'title': 'A template example',
+        'friends': ['Bella', 'Joel', 'Jaxon', 'Owen'],
+        'src': '/static/test.png'
+    }
+    rendered = render_file('upload.html', variables)
+    response.write(rendered)
+
+def index_example(response):
+    response.write(render_file('pages/index.html', {}))
+
+def feed_frontend_dev(response):
+	dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+	username = 'drjc'
+	location = ''
+	caption = 'Hello world its me'
+	imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
+	rendered = render_file('pages/feed.html', {"dp": dp, 'username': username, 'latitude': latitude, 'longitude': longitude, 'caption': caption, 'image': image})
+	response.write(rendered)
 
 server = Server()
 
@@ -109,6 +131,9 @@ server.register(r'/meme_image/(.+)', meme_image)
 server.register('/photo', photo_handler)
 
 server.register('/template_example', template_example)
+server.register('/uploadexample', template_upload)
+server.register('/index_example', index_example)
+server.register('/feed_frontend_dev', feed_frontend_dev)
 
 if __name__ == "__main__":
     server.run()

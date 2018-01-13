@@ -1,0 +1,17 @@
+{% include pages/header.html %}
+	   <article id="article" class="post">
+	   {% for i in range (10) %}
+			<div>
+				<img class="dp" src="{{ dp }}" />
+				<p class="username">"{{ username }}"</p>
+				<p class="location">"{{ latitude,longitude }}"</p>
+			</div>
+			<div>
+				<img src="{{ image }}" alt= "image" />
+			</div>
+			<div>
+				<p class="caption">"{{ caption }}"</p>
+				<p class="timestamp">"{{ timestamp }}"</p>
+			</div>
+		{% end for %}	   
+	   </article>

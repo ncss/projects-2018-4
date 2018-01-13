@@ -1,0 +1,11 @@
+{
+  "short_name": "GeoMeme",
+  "name": "Mo Memes Plz\nHa Memes.",
+  "icons": [],
+  "start_url": "/index_example",
+
+
+  "background_color": "#c50e29",
+  "theme_color": "#ff5252",
+  "display": "standalone"
+}
