@@ -1,6 +1,7 @@
 from tornado.ncss import Server, ncssbook_log
 from db import *
 import os
+from template import render_file
 
 
 username, password = None, None
@@ -20,8 +21,13 @@ def login_handler(response):
       response.redirect('/')
       print("redirected")
   else:
-    response.write(html)
+    rendered = render_file(os.path.join('pages', 'login.html'), {})
+    response.write(rendered)
 
 def database_login_handler(username, password):
   print("Details Accepted")
   return True
+
+def logout_handler(response):
+  response.clear_cookie('loggedin')
+  response.redirect('/')

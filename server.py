@@ -15,6 +15,9 @@ def photo_save(user: str, caption: str, lat: str, long: str, content_type, photo
 def login_handler(response):
     user.login_handler(response)
 
+def logout_handler(response):
+    user.logout_handler(response)
+
 def index_handler(response):
     cookie = response.get_secure_cookie('loggedin')
     if cookie:
@@ -104,6 +107,7 @@ server.register('/', index_handler)
 server.register('/feed', feed_handler)
 server.register('/upload', upload_handler)
 server.register('/login', login_handler)
+server.register('/logout', logout_handler)
 #---------------
 server.register(r'/profile/(.+)', profile_handler)
 server.register(r'/meme_image/(.+)', meme_image)
