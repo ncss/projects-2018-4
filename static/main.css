@@ -36,7 +36,7 @@ nav{
   left:0px;
   right: 0px;
 
-  height: 35px;
+  height: 45px;
 
   background: var(--color-dark);
 }
@@ -55,11 +55,23 @@ nav ul li{
 nav .logo{
   font-family: var(--text-logo);
 }
+nav #navHome{
+  margin-top: 0px;
+}
+nav #navCamera{
+  margin-top: 0px;
+}
+nav a{
+  display: inline-block;
+  height: 45px;
+
+  padding: 0px 20px;
+}
 nav #navHome a img{
-  height: 25px;
+  height: 35px;
 }
 nav #navCamera a img{
-  height: 25px;
+  height: 35px;
 }
 
 
