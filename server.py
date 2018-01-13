@@ -1,16 +1,35 @@
 from tornado.ncss import Server, ncssbook_log
 import user
+from datetime import datetime
 from db import Category, Meme, Person
 import base64
 from template import render_file
 import os
 
+
+def format_time(date):
+    from datetime import datetime, timedelta
+    import dateutil.parser
+
+    try:
+        date = dateutil.parser.parse(date) # get ISO 8601 as a datetime object
+        date += timedelta(hours = 11) # add 11 hours
+        cur_time = datetime.utcnow()
+        cur_time += timedelta(hours = 11)
+        if abs(cur_time.hour - date.hour) <= 1:
+            return "Less than 1 hour ago"
+        else:
+            return date.strftime('%I:%M:%S %d/%m/%Y')
+    except ValueError:
+        return date
+
+
 def photo_save(user: str, caption: str, lat: str, long: str, content_type, photo):
     "This function will take information about a photo and save it to a location."
 
     photo = "data:{};base64,".format(content_type) + base64.b64encode(photo).decode('ascii')
-    Meme.create_meme_post(photo, caption, lat, long, user, 'timestamp', 3)
-
+    current_time = datetime.utcnow().isoformat()
+    Meme.create_meme_post(photo, caption, lat, long, user, current_time, 3)
 
 def login_handler(response):
     user.login_handler(response)
@@ -21,12 +40,12 @@ def index_handler(response):
         response.redirect('/feed')
         #cookie_split = str(cookie).split(',')
         # if cookie_split[0] == 'True':
-            
+
         # else:
         #     response.redirect('/login')
     else:
         response.redirect('/login')
-    
+
 
 def profile_handler(response, user):
     profile_picture = '/static/test.png'
@@ -92,9 +111,11 @@ def index_example(response):
 def feed_handler(response):
     dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
     photo_list = Meme.get_memes_for_category(3)
+    time_func = lambda x: format_time(x)
     rendered = render_file("pages/feed.html", {
         "dp": dp,
-        "photo_list": photo_list
+        "photo_list": photo_list,
+        "time_format": time_func
     })
     response.write(rendered)
 

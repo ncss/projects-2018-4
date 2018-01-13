@@ -17,7 +17,7 @@
 		</div>
 		<div class = "meta-secondary-container">
 			<p class="caption">Caption: {{ meme.caption }}</p>
-			<p class="timestamp">Time: {{ meme.timestamp }}</p>
-		</div>	   
+			<p class="timestamp">Time: {{ time_format(meme.timestamp) }}</p>
+		</div>
    </article>
 {% end for %}
