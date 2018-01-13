@@ -8,11 +8,10 @@
 </div>
 <div class = "content">
   <div id = "current-meme">
-    <img class="spinning" src="{{ meme_of_week_img }}">
+    <img class="memeofweekimg" src="{{ meme_of_week_img }}">
     <p>MEME OF THE WEEK</p>
   </div>
   <form id = "upload-form" method = "post" enctype = "multipart/form-data">
-    <input name="username" type="text" placeholder="Username" hidden>
     <input id = "choose-file" name="photo" type="file" accept = "image/*;capture=camera" required>
     <input name="caption" type="text" placeholder="Enter Caption" required>
     <input class = "lat" name="lat" type="text" placeholder="Latitude" readonly>

@@ -213,6 +213,14 @@ article.post {
 	max-width:70%;
 }
 
+.memeofweekimg {
+  max-width:70%;
+}
+
+.location {
+  font-weight: bold;
+}
+
 @keyframes rotateRight{
     100%{ transform:rotate(360deg); }
 }
