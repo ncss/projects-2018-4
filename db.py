@@ -1,12 +1,12 @@
 import sqlite3
 
-class Category:    
+class Category:
     def __init__(self, ID = None, image = None, information = None, name = None):
         self.ID = ID
         self.image = image
         self.information = information
         self.name = name
-        
+
     @staticmethod
     def get_categories():
         conn = sqlite3.connect('db/main.db')
@@ -35,7 +35,7 @@ class Category:
             return Category(row[0], row[1], row[2], row[3])
         cur.close()
         return None
-    
+
     @staticmethod
     def create_category(self,image, name , information):
         conn = sqlite3.connect('db/main.db')
@@ -54,7 +54,7 @@ class Category:
 
 class Meme:
     _conn = sqlite3.connect('db/main.db')
-    
+
     def __init__(self, ID = None, image = None, caption = None, latitude = None, longitude = None, username = None, timestamp = None, catid = None):
         self.ID = ID
         self.image = image
@@ -73,13 +73,13 @@ class Meme:
         select *
         from memes m
         where catid == ?
-        '''(catid,))
+        ''',(catid,))
         memesofcat = []
         for row in cur:
             memesofcat.append(Meme(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
         cur.close()
         return memesofcat
-    
+
     @staticmethod
     def create_meme_post(image, caption, latitude, longitude, unsername, timestamp, catid):
         conn = sqlite3.connect('db/main.db')

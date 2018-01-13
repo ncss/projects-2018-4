@@ -24,8 +24,8 @@ def photo_save(user: str, caption: str, lat: str, long: str, photo):
 
 def index_handler(response):
     response.write('Download Page <br>')
-    response.write('<img src="/photo" alt="{}">'.format(filename))  
-    
+    response.write('<img src="/photo" alt="{}">'.format(filename))
+
 
 def upload_handler(response):
     f = open('demotemplate.html', 'r')
@@ -57,32 +57,25 @@ def photo_handler(response):
     response.write(photo)
 
 def list_all_photos(response):
-    response.write('Hello World')
-    list_of_photos = ['kevin_photo.jpg', 'dab.jpg', 'salt_bae.jpg']
+    list_of_photos = Meme.get_memes_for_category(3)
 
     output = ''
-    
-    for photofile in list_of_photos:
-        text_filename = photofile.replace('jpg', 'txt')
-        f = open('files/' + text_filename)
-        text = f.readlines()
-        print(text)
+
+    for meme in list_of_photos:
+        print(meme)
         output += '<div>'
-        output += '<p><b> This an awesome mem page have fun :) </b></p>'
-        output += '<img src="/meme_image/{}">'.format(photofile)
-        output += '<p>' + text[0] + '</p>'
-        output += '<p>' + text[1] + '</p>'
-        output += '<p>' + text[2] + '</p>'
-        output += '<p>' + text[3] + '</p>'
+        output += '<p><b> This an awesome meme page have fun :) </b></p>'
+        output += '<img src="{}">'.format(meme.image)
+        output += '<p>Username: ' + meme.username + '</p>'
+        output += '<p>Caption: ' + meme.caption + '</p>'
+        output += '<p>Latitude: ' + meme.latitude + '</p>'
+        output += '<p>Longitude: ' + meme.longitude + '</p>'
+        output += '<p>Timestamp: ' + meme.timestamp + '</p>'
         output += '</div>'
-        username = text[0]
-        caption = text[1]
-        latitude = text[2]
-        longitude = text[3]
-    
+
     response.write(output)
-    
-   
+
+
 def meme_image(response, filename):
     response.set_header('Content-Type', 'image/png')
     f = open('files/' + filename, 'rb')
