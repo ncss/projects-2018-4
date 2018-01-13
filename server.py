@@ -79,7 +79,7 @@ def upload_handler(response):
     else:
         # We need to display an upload form.
         variables = {
-            'meme_of_week_img': '/static/test.png'
+            'meme_of_week_img': '/static/dab.jpg'
         }
         rendered = render_file('pages/upload.html', variables)
         response.write(rendered)

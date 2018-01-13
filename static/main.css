@@ -93,27 +93,41 @@ h1{
 }
 
 #subheader{
-  background-color: #ff0000;
+  background-color: #ff867f;
   width: 100%;
   height: 60px;
   line-height: 60px;
-  margin: 20px 0;
+  padding: 5px;
+  margin-left: -2px;
 }
 #subheader h1 {
   display: inline;
   vertical-align: middle; 
 }
+button {
+  background: #c50e29;
+  color: white;
+  border-style: outset;
+  border-color: #c50e29;
+  font: bold 15px arial, sans-serif;
+  text-shadow:none;
+}
+
+#sendbutton{
+  height: 50px;
+  width: 100px;
+}
 
 .back-button{
   position: absolute;
   left: 10px;
-  height: 60px;
-  width: 60px;
+  height: 30px;
+  width: 50px;
+  padding-top: 15px;
+
 }
 .upload-content{
-  margin: 10px;
   padding: 10px;
-  background-color: pink;
   align-content: center;
 }
 
@@ -151,6 +165,14 @@ form input{
 	grid-column: 8 / 12;
 }
 
+.lat {
+	opacity: 0;
+}
+
+.long {
+	opacity: 0;
+}
+
 img.dp {
 	max-width: 100%;
 	max-height: auto;
@@ -162,4 +184,14 @@ img.meme-image {
 
 article.post {
 	padding: 2em 1em;
+}
+
+.spinning{ 
+    transform-origin:50% 50%;
+    animation:2s rotateRight infinite linear; 
+	max-width:70%;
+}
+
+@keyframes rotateRight{
+    100%{ transform:rotate(360deg); }
 }
