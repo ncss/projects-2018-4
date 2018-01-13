@@ -1,0 +1,62 @@
+{% include pages/header.html %}
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>
+
+  <script>
+    var data = [
+    {% for meme in photo_list %}
+      {
+        latitude: "{{ meme.latitude  }}",
+        longitude: "{{ meme.longitude }}",
+        caption: "{{ meme.caption }}",
+        id: "{{ meme.ID }}",
+      },
+    {% end for %}
+    ]
+
+    
+    wrapper = document.createElement('div')
+    mapElm = document.createElement('div')
+    document.body.appendChild(wrapper);
+    wrapper.appendChild(mapElm);
+    
+    document.body.style.overflow = "hidden";
+    wrapper.style.position = "absolute";
+    wrapper.style.top = "40px";
+    wrapper.style.left = "0px";
+    wrapper.style.right = "0px";
+    wrapper.style.bottom = "45px";
+    mapElm.style.width = "100%";
+    mapElm.style.height = "100%";
+
+    function initMap(){
+      map = new google.maps.Map(mapElm, {
+        center: {
+          lat: -34.397,
+          lng: 150.644
+        },
+        zoom: 6
+      });
+      
+      for (meme of data){
+        marker = new google.maps.Marker({
+          position: {
+            lat: parseFloat(meme.latitude),
+            lng: parseFloat(meme.longitude)
+          },
+          map: map,
+          title: meme.caption
+        });
+
+        marker.addListener('click', function() {
+          window.location = "/post/"+meme.id;
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
+        });
+      }
+
+      infoWindow = new google.maps.InfoWindow;
+    }
+  </script>
+
+  </body>
+</html>
