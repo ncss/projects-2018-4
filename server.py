@@ -1,8 +1,7 @@
 from tornado.ncss import Server, ncssbook_log
+import user
 from db import Category, Meme
 import base64
-
-print(Category.get_categories())
 from template import render_file
 
 def photo_save(user: str, caption: str, lat: str, long: str, content_type, photo):
@@ -12,8 +11,20 @@ def photo_save(user: str, caption: str, lat: str, long: str, content_type, photo
     Meme.create_meme_post(photo, caption, lat, long, user, 'timestamp', 3)
 
 
+def login_handler(response):
+    user.login_handler(response)
+
 def index_handler(response):
-    response.redirect('/feed')
+    cookie = response.get_secure_cookie('loggedin')
+    if cookie != None:
+        cookie_split = str(cookie).split(',')
+        if cookie_split[0] == 'True':
+            response.redirect('/feed')
+        else:
+            response.redirect('/login')
+    else:
+        response.redirect('/login')
+    
 
 def profile_handler(response, user):
     if user.lower() == 'liam':
@@ -81,6 +92,7 @@ server = Server()
 server.register('/', index_handler)
 server.register('/feed', feed_handler)
 server.register('/upload', upload_handler)
+server.register('/login', login_handler)
 #---------------
 server.register(r'/profile/(.+)', profile_handler)
 server.register(r'/meme_image/(.+)', meme_image)
