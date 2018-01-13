@@ -16,7 +16,7 @@ body{
   --color-text: Black;
 
 
-  margin: 40px 2px 35px 2px;
+  margin: 40px 2px 45px 2px;
   color: var(--color-text);
   background-color: (--color-bg);
 
@@ -36,7 +36,9 @@ nav{
   left:0px;
   right: 0px;
 
-  height: 35px;
+  z-index: 100;
+
+  height: 45px;
 
   background: var(--color-dark);
 }
@@ -55,11 +57,20 @@ nav ul li{
 nav .logo{
   font-family: var(--text-logo);
 }
-nav #navHome a img{
-  height: 25px;
+nav #navHome{
+  margin-top: 0px;
 }
-nav #navCamera a img{
-  height: 25px;
+nav #navCamera{
+  margin-top: 0px;
+}
+nav a{
+  display: inline-block;
+  height: 45px;
+
+  padding: 0px 20px;
+}
+nav * a img{
+  height: 35px;
 }
 
 
@@ -67,6 +78,10 @@ nav #navCamera a img{
 header{
   background-color: var(--color-dark);
   height: 40px;
+
+  display: block;
+
+  z-index: 100;
 
   position: fixed;
   top: 0px;
