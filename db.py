@@ -88,8 +88,16 @@ class Meme:
 
 
 class Upvote:
-    def __init__(self, ID = None, userid = None, timestamp = None, memeid = None)
-    self.ID = ID
-    self.userid = userid
-    self.timestamp = timestamp
-    self.memeid = memeid
+    def __init__(self, ID = None, userid = None, timestamp = None, memeid = None):
+        self.ID = ID
+        self.userid = userid
+        self.timestamp = timestamp
+        self.memeid = memeid
+
+    def create_upvote(userid, timestamp, memeid):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+
+#    def get_upvotes_for_memes(memeid):
+#        conn = sqlite3.connect('db/main.db')
+#        cur = conn.cursor()
