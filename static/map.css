@@ -15,8 +15,8 @@
   background-color: rgba(0,0,0, 0.2);
   opacity: 0;
 
-  transition-property: opacity;
-  transition-duration: 0.4s;
+  transition-property: opacity, right, bottom;
+  transition-duration: 0.4s, 0.4s, 0.4s;
 }
 
 .map{
