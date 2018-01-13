@@ -107,6 +107,18 @@ def template_upload(response):
     rendered = render_file('upload.html', variables)
     response.write(rendered)
 
+def index_example(response):
+    response.write(render_file('pages/index.html', {}))
+
+def feed_frontend_dev(response):
+	dp = 'http://whsc.emory.edu/home/publications/health-sciences/emory-health/summer09/img/curran.jpg'
+	username = 'drjc'
+	location = '101.11, 101.2'
+	caption = 'Hello world its me'
+	imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
+	rendered = render_file('pages/feed.html', {"dp": dp, 'username': username, 'location': location, 'caption': caption, 'imgsrc': imgsrc})
+	response.write(rendered)
+
 server = Server()
 
 server.register('/', index_handler)
@@ -119,6 +131,8 @@ server.register('/photo', photo_handler)
 
 server.register('/template_example', template_example)
 server.register('/uploadexample', template_upload)
+server.register('/index_example', index_example)
+server.register('/feed_frontend_dev', feed_frontend_dev)
 
 if __name__ == "__main__":
     server.run()

@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Impact";
-  src: url("impact.ttf");
+  src: url("/static/impact.ttf");
 }
 
 body{
@@ -34,7 +34,7 @@ nav{
 
   height: 30px;
 
-  background: var(--color-dark)
+  background: var(--color-dark);
 }
 nav ul{
   display: flex;
@@ -49,7 +49,7 @@ nav ul li{
   padding: 5px 10px;
 }
 nav .logo{
-  font-family: var(--text-logo)
+  font-family: var(--text-logo);
 }
 nav #navHome a img{
   height: calc(100% - 10px);
