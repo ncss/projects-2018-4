@@ -124,7 +124,7 @@ def upload_handler(response):
     else:
         # We need to display an upload form.
         variables = {
-            'meme_of_week_img': '/static/dab.jpg'
+            'meme_of_week_img': '/static/memeOTW.jpg'
         }
         rendered = render_file('pages/upload.html', variables)
         response.write(rendered)
@@ -140,13 +140,12 @@ def nearby_handler(response):
         "photo_list": photo_list
     })
     response.write(rendered)
-    pass
 
 # imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
 
 @requires_login
 def feed_handler(response):
-    dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    dp = 'http://i0.kym-cdn.com/profiles/icons/big/000/132/880/awesome%20face%20shrug.jpg'
     photo_list = Meme.get_memes_for_category(3)
     check_upvotes_l = lambda x: check_upvote_l(x)
     imglink = "/post"
@@ -175,7 +174,7 @@ def check_upvote_l(memeid):
     return str(len(upvote_data))
 
 def meme_page_handler(response, i):
-    dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    dp = 'http://i0.kym-cdn.com/profiles/icons/big/000/132/880/awesome%20face%20shrug.jpg'
     photo_list = Meme.get_memes_for_category(3)
     rendered = render_file("pages/meme_pages.html", {
         "dp": dp,

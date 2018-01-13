@@ -163,16 +163,27 @@ form input{
 }
 
 .dp {
-	grid-column: 1 / 3;
+  grid-column: 1 / 4;
+  grid-row: 1;
 }
 
 .username {
-	grid-column: 3 / 8 ;
+  grid-column: 1 / 4 ;
+  grid-row: 2;
+  color: inherit;
 }
 
 .location {
-	grid-column: 8 / 12;
+  grid-column: 1 / 4;
+  grid-row: 3;
 }
+
+.upvote {
+  grid-column: 1 / 4;
+  grid-row: 4;
+}
+
+
 .meta-secondary-container {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
@@ -183,7 +194,8 @@ form input{
 }
 
 .timestamp {
-	grid-column: 8 / 12;
+  grid-column: 1 / 4;
+  grid-row: 4;
 }
 
 .lat {
@@ -194,12 +206,20 @@ form input{
 	display: none;
 }
 
+
 img.dp {
 	max-width: 100%;
-	max-height: auto;
+	/*max-height: 100%;*/
 }
+
+.meme-container {
+  grid-column: 5 / 12;
+  grid-row: 1/5;
+}
+
 img.meme-image {
-	max-width: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 article.post {
