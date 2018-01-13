@@ -100,7 +100,7 @@ def index_example(response):
     response.write(render_file('pages/index.html', {}))
 
 def feed_frontend_dev(response):
-	dp = 'http://whsc.emory.edu/home/publications/health-sciences/emory-health/summer09/img/curran.jpg'
+	dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
 	username = 'drjc'
 	location = '101.11, 101.2'
 	caption = 'Hello world its me'
