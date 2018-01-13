@@ -55,10 +55,10 @@ nav .logo{
   font-family: var(--text-logo);
 }
 nav #navHome a img{
-  height: 35px;
+  height: 25px;
 }
 nav #navCamera a img{
-  height: 35px;
+  height: 25px;
 }
 
 
