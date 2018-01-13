@@ -114,6 +114,8 @@ h1{
   line-height: 60px;
   padding: 5px;
   margin-left: -2px;
+  box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+
 }
 #subheader h1 {
   display: inline;
@@ -126,6 +128,10 @@ button {
   border-color: #c50e29;
   font: bold 15px arial, sans-serif;
   text-shadow:none;
+}
+
+#upload-form {
+  margin: 0px 25px 0px 25px;
 }
 
 #sendbutton{
@@ -148,7 +154,7 @@ button {
 
 form input{
   width:100%;
-  margin-top: 5px;
+  margin: 5px 0px 5px 0px;
 }
 
 .meta-primary-container {
@@ -181,11 +187,11 @@ form input{
 }
 
 .lat {
-	opacity: 0;
+	display: none;
 }
 
 .long {
-	opacity: 0;
+	display: none;
 }
 
 img.dp {
@@ -209,4 +215,17 @@ article.post {
 
 @keyframes rotateRight{
     100%{ transform:rotate(360deg); }
+}
+
+.content {
+  box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+  margin: 7px 5px 7px 5px;
+  padding: 5px;
+  background: var(--color-light);
+}
+
+.profileimg {
+  max-width: 60%;
+  border-style: solid;
+  background-color: white;
 }
