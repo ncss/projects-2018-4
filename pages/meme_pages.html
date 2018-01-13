@@ -3,20 +3,19 @@
 <script src="/static/map.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdaPDjie3JjSXaInNxD3MDcgQusP2Qk5c&callback=initMap"></script>
 
-{% for i, meme in enumerate(photo_list) %}
 
-   <article id="article" class="post">
+
+	<article id="article" class="post">
 		<div class = "meta-primary-container">
 			<img class="dp" src="{{ dp }}" />
 			<p class="username">User: {{ meme.username }}</p>
 			<p class="location" style="cursor: pointer;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )">Meme Location: {{ meme.latitude, meme.longitude }}</p>
 		</div>
 		<div class = "meme-image-container">
-			<a href="{{imglink}}/{{i}}"><img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
+			<img class="meme-image" src="{{ meme.image }}" alt= "image" />
 		</div>
 		<div class = "meta-secondary-container">
 			<p class="caption">Caption: {{ meme.caption }}</p>
 			<p class="timestamp">Time: {{ meme.timestamp }}</p>
 		</div>
-   </article>
-{% end for %}
+	</article>

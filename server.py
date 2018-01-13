@@ -70,11 +70,23 @@ def index_example(response):
 def feed_handler(response):
     dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
     photo_list = Meme.get_memes_for_category(3)
+    imglink = "/post"
     rendered = render_file("pages/feed.html", {
         "dp": dp,
-        "photo_list": photo_list
+        "photo_list": photo_list,
+        "imglink": imglink
     })
     response.write(rendered)
+
+def meme_page_handler(response, i):
+    dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    photo_list = Meme.get_memes_for_category(3)
+    rendered = render_file("pages/meme_pages.html", {
+        "dp": dp,
+        "meme": photo_list[int(i)]
+    })
+    response.write(rendered)
+
 
 server = Server()
 
@@ -83,7 +95,7 @@ server.register('/feed', feed_handler)
 server.register('/upload', upload_handler)
 #---------------
 server.register(r'/profile/(.+)', profile_handler)
-server.register(r'/meme_image/(.+)', meme_image)
+server.register(r'/post/(.+)', meme_page_handler)
 server.register('/index_example', index_example)
 
 if __name__ == "__main__":

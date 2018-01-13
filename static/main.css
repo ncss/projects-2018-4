@@ -93,11 +93,11 @@ h1{
 }
 
 #subheader{
-  background-color: #ff0000;
+  background-color: #ff867f;
   width: 100%;
   height: 60px;
   line-height: 60px;
-  margin: 20px 0;
+  padding: 5px;
 }
 #subheader h1 {
   display: inline;
@@ -111,9 +111,7 @@ h1{
   width: 60px;
 }
 .upload-content{
-  margin: 10px;
   padding: 10px;
-  background-color: pink;
   align-content: center;
 }
 

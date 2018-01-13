@@ -53,7 +53,8 @@ class ForNode(Node):
     def returnText(self, context):
         result = ""
         for i in eval(self.iterable, {}, context):
-            context[self.variable.strip()] = i
+            context["__itervar"] = i
+            exec(self.variable + " = __itervar", {}, context)
             result += self.groupnode.returnText(context)
         return result
 
