@@ -205,6 +205,7 @@ img.meme-image {
 
 article.post {
 	padding: 2em 1em;
+  margin-top: 5px;
 }
 
 .spinning{ 
@@ -217,15 +218,19 @@ article.post {
     100%{ transform:rotate(360deg); }
 }
 
-.content {
-  box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
-  margin: 7px 5px 7px 5px;
-  padding: 5px;
-  background: var(--color-light);
-}
-
 .profileimg {
   max-width: 60%;
   border-style: solid;
   background-color: white;
+  border-color: black;
+}
+
+.content {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  font: bold 15px arial, sans-serif;
+  margin: 7px 5px 7px 5px;
+  padding: 3px;
+  box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
 }
