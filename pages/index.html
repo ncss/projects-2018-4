@@ -1,4 +1,11 @@
 {% include pages/header.html %}
 <main>
   This is an example home page. Update me!
+  {% for i in range(30) %}
+    <p>{{ i*i }}</p>
+  {% end for %}
+
+  <form enctype="multipart/form-data">
+    <input type="file" accept="">
+  </form>
 </main>
