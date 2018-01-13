@@ -125,7 +125,7 @@ h1{
 }
 #subheader h1 {
   display: inline;
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 button {
   background: #c50e29;
@@ -187,7 +187,7 @@ i.material-icons {
 	transition-property: background-color;
 	transition-duration: 2s;
 	transition-delay: 0s;
-} 
+}
 
 button:focus .material-icons {
 	color: var(--color-dark);
@@ -223,6 +223,7 @@ article.post {
   padding-top: 20px;
   text-align: left;
   float: left;
+  color: inherit;
   width: auto;
 }
 
@@ -235,6 +236,11 @@ article.post {
 
 .meme-image {
   grid-row: 2;
+}
+
+.upvote {
+  grid-column: 1 / 4;
+  grid-row: 4;
 }
 
 .meta-secondary-container {
@@ -267,19 +273,25 @@ article.post {
 >>>>>>> master
 }
 
+
 img.dp {
 	max-width: 100%;
-	max-height: auto;
+	/*max-height: 100%;*/
+}
+
+.meme-container {
+  grid-column: 5 / 12;
+  grid-row: 1/5;
 }
 
 img.meme-image {
-	max-width: 100%;
-	grid-row: 2;
+  max-width: 100%;
+  height: 100%;
 }
 
-.spinning{ 
+.spinning{
     transform-origin:50% 50%;
-    animation:2s rotateRight infinite linear; 
+    animation:2s rotateRight infinite linear;
 	max-width:70%;
 }
 
@@ -318,4 +330,30 @@ img.meme-image {
 #signupbut {
   margin-bottom: 25px;
   margin-top: 20px;
+}
+
+article.post {
+	padding: 2em 1em;
+}
+	
+
+i.material-icons {
+	color: var(--color-green);
+	transition-property: color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+}
+.upvote {
+	color: var(--color-primary);
+	transition-property: background-color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+} 
+
+button:focus .material-icons {
+	color: var(--color-dark);
+	transition-property: color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+	
 }
