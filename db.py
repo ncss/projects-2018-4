@@ -67,6 +67,7 @@ class Meme:
         select *
         from memes m
         where catid == ?
+        order by id desc
         ''',(catid,))
         memesofcat = []
         for row in cur:
