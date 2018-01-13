@@ -20,12 +20,8 @@
       <p>Current upvote count: {{ check_upvotes(meme.ID) }}</p>
 		</div>
     <div>
-      <button type="button" id="{{ meme.ID }}" name="button" class="upvote">
-        <i class="material-icons">star</i>
-        <span>&nbsp;Upvote</span>
-      </button>
+      <button type="button" id="{{ meme.ID }}" name="button" class="upvote">Upvote</button>
     </div>
-
    </article>
 {% end for %}
 
