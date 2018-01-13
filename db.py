@@ -85,3 +85,42 @@ class Meme:
         lastid = cur.lastrowid
         conn.close()
         return lastid
+
+
+class Person:
+    def __init__(self, id = None, password = None, name = None, bio = None, image = None):
+        self.id = id
+        self.password = password
+        self.name = name
+        self.bio = bio
+        self.image = image
+
+    @staticmethod
+    def get_user_by_id(id):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        select *
+        from person
+        where id = ?;
+        ''', id)
+        for row in cur:
+            cur.close()
+            return Person(row[0], row[1], row[2], row[3], row[4])
+        cur.close()
+        return None
+
+    @staticmethod
+    def get_user_by_username(name):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        select *
+        from category
+        where name = ?;
+        ''', name)
+        for row in cur:
+            cur.close()
+            return Category(row[0], row[1], row[2], row[3])
+        cur.close()
+        return None
