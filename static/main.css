@@ -4,6 +4,11 @@
   src: url("/static/impact.ttf");
 }
 
+#signup-form {
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
 body{
   /*Defining Variables*/
   --color-primary: #ff5252;
@@ -17,7 +22,7 @@ body{
   --color-text: Black;
 
 
-  margin: 45px 0px 40px 0px;
+  margin: 40px 2px 45px 2px;
   color: var(--color-text);
   background-color: (--color-bg);
 
@@ -37,7 +42,9 @@ nav{
   left:0px;
   right: 0px;
 
-  height: 35px;
+  z-index: 100;
+
+  height: 45px;
 
   background: var(--color-dark);
 }
@@ -56,11 +63,20 @@ nav ul li{
 nav .logo{
   font-family: var(--text-logo);
 }
-nav #navHome a img{
-  height: 25px;
+nav #navHome{
+  margin-top: 0px;
 }
-nav #navCamera a img{
-  height: 25px;
+nav #navCamera{
+  margin-top: 0px;
+}
+nav a{
+  display: inline-block;
+  height: 45px;
+
+  padding: 0px 20px;
+}
+nav * a img{
+  height: 35px;
 }
 
 
@@ -68,6 +84,10 @@ nav #navCamera a img{
 header{
   background-color: var(--color-dark);
   height: 40px;
+
+  display: block;
+
+  z-index: 100;
 
   position: fixed;
   top: 0px;
@@ -94,77 +114,67 @@ h1{
 }
 
 #subheader{
-  background-color: #ff0000;
+  background-color: #ff867f;
   width: 100%;
-  height: 60px;
-  line-height: 60px;
-  margin: 20px 0px 20px 0px;
+  height: 50px;
+  line-height: 50px;
+  padding: 5px;
+  margin-left: -2px;
+  box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+
 }
 #subheader h1 {
   display: inline;
   vertical-align: middle; 
 }
+button {
+  background: #c50e29;
+  color: white;
+  border-style: outset;
+  border-color: #c50e29;
+  font: bold 15px arial, sans-serif;
+  text-shadow:none;
+}
+
+#upload-form {
+  margin: 0px 25px 0px 25px;
+}
+
+#sendbutton{
+  height: 50px;
+  width: 100px;
+  margin-top: 10px;
+}
 
 .back-button{
   position: absolute;
   left: 10px;
-  height: 60px;
-  width: 60px;
+  height: 25px;
+  width: 50px;
+  padding-top: 15px;
+
 }
 .upload-content{
-  margin: 10px;
   padding: 10px;
-  background-color: pink;
   align-content: center;
 }
 
 form input{
   width:100%;
+  margin: 5px 0px 5px 0px;
+}
+
+article.post {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+	padding: 2em 1em;
   margin-top: 5px;
-}
-
-.meta-primary-container {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-}
-
-.dp {
-	grid-column: 1 / 3;
-}
-
-.username {
-	grid-column: 3 / 8 ;
-}
-
-.location {
-	grid-column: 8 / 12;
-}
-.meta-secondary-container {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-}
-
-.caption {
-	grid-column: 1 / 8;
-}
-
-.timestamp {
-	grid-column: 8 / 12;
-}
-
-img.dp {
-	max-width: 100%;
-	max-height: auto;
 }
 
 img.meme-image {
 	max-width: 100%;
 }
-
-article.post {
-	padding: 2em 1em;
-}
-	
 
 i.material-icons {
 	color: var(--color-green);
@@ -184,5 +194,102 @@ button:focus .material-icons {
 	transition-property: color;
 	transition-duration: 2s;
 	transition-delay: 0s;
-	
+}
+
+.meta-primary-container {
+  grid-row: 1;
+}
+
+.dp {
+  grid-column: 1;
+}
+
+.username {
+  grid-column: 2;
+  text-decoration: none;
+  color: black;
+  padding-top: 20px;
+}
+
+.location {
+	grid-column: 3;
+}
+
+.meme-image {
+  grid-row: 2;
+}
+
+.meta-secondary-container {
+  grid-row: 3;    
+}
+
+.caption {
+	grid-column: 1;
+}
+
+#map2{
+  width: 40px;
+}
+
+.timestamp {
+	grid-column: 3;
+}
+
+.lat {
+	display: none;
+}
+
+.long {
+	display: none;
+}
+
+img.dp {
+	max-width: 100%;
+	max-height: auto;
+}
+img.meme-image {
+	max-width: 100%;
+}
+
+.spinning{ 
+    transform-origin:50% 50%;
+    animation:2s rotateRight infinite linear; 
+	max-width:70%;
+}
+
+.memeofweekimg {
+  max-width:70%;
+}
+
+.location {
+  font-weight: bold;
+}
+
+@keyframes rotateRight{
+    100%{ transform:rotate(360deg); }
+}
+
+.profileimg {
+  max-width: 60%;
+  border-style: solid;
+  background-color: white;
+  border-color: black;
+}
+
+.content {
+  background: var(--color-light);
+  color: white;
+  font: bold 15px arial, sans-serif;
+  margin: 5%;
+  padding: 5%;
+  box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+}
+
+.inputt{
+  margin-top: 50px;
+}
+
+#signupbut {
+  margin-bottom: 25px;
+  margin-top: 20px;
 }

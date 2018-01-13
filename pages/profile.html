@@ -1,0 +1,26 @@
+{% include pages/header.html %}
+<div id = "subheader">
+<a href="/">
+<img class = "back-button" src = "/static/back.png">
+</a>
+  <h1>Profile</h1>
+</div>
+
+    <div class="content">
+      <img class="profileimg" src="{{ image }}" />
+    </div>
+
+    <div class="content">
+      <p class="username">
+        User: {{ name }}
+      </p>
+    </div>
+    
+    <div class="content">
+      <p>
+        Bio: {{ bio }}
+      </p>
+    </div>
+  </body>
+
+</html>

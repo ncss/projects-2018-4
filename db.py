@@ -42,7 +42,7 @@ class Category:
         cur = conn.cursor()
         cur.execute('''
         INSERT INTO category (image, information, name) VALUES (?,?,?)
-        '''(image,information,name))
+        '''(image,information,name)) #Must be a tuple. do not delete the brackets or comma
         conn.commit()
         cur.close()
         conn.close()
@@ -67,7 +67,8 @@ class Meme:
         select *
         from memes m
         where catid == ?
-        ''',(catid,))
+        order by id desc
+        ''',(catid,)) # Dont' remove the comma in (catid,), since this must be a tuple.
         memesofcat = []
         for row in cur:
             memesofcat.append(Meme(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
@@ -75,17 +76,71 @@ class Meme:
         return memesofcat
 
     @staticmethod
-    def create_meme_post(image, caption, latitude, longitude, username, timestamp, catid):
+    def create_meme_post(image, caption, latitude, longitude, userid, timestamp, catid):
         conn = sqlite3.connect('db/main.db')
         cur = conn.cursor()
         cur.execute('''
-        INSERT INTO memes (image, caption, locationlat, locationlon, username, timestamp, catid) VALUES (?,?,?,?,?,?,?)
-        ''', (image,caption,latitude, longitude,username,timestamp,catid))
+        INSERT INTO memes (image, caption, locationlat, locationlon, userid, timestamp, catid) VALUES (?,?,?,?,?,?,?)
+        ''', (image, caption, latitude, longitude, userid, timestamp, catid))
         conn.commit()
         lastid = cur.lastrowid
         conn.close()
         return lastid
 
+
+class Person:
+    def __init__(self, id = None, password = None, name = None, bio = None, image = None):
+        self.id = id
+        self.password = password
+        self.name = name
+        self.bio = bio
+        self.image = image
+
+    @staticmethod
+    def get_user_by_id(id):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        select *
+        from person
+        where id = ?;
+        ''', (id,)) #Must be a tuple. do not delete the brackets or comma
+        for row in cur:
+            cur.close()
+            return Person(row[0], row[1], row[2], row[3], row[4])
+        cur.close()
+        return None
+
+    @staticmethod
+    def get_user_by_username(name):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        select *
+        from person
+        where name = ?;
+        ''', (name,)) #Must be a tuple. do not delete the brackets or comma
+        for row in cur:
+            cur.close()
+            return Person(row[0], row[1], row[2], row[3])
+        cur.close()
+        return None
+
+    @staticmethod
+    def create_user(password, name, bio, image):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        INSERT INTO person (password, name, bio, image) VALUES (?,?,?,?)
+        ''', (password, name, bio, image))
+        conn.commit()
+        lastid = cur.lastrowid
+        conn.close()
+        return lastid
+
+    def get_upvote_count(self):
+        print(Upvote.get_upvotes_for_memes(self.ID))
+        return str(len(Upvote.get_upvotes_for_memes(self.ID)))
 
 class Upvote:
     def __init__(self, ID = None, userid = None, timestamp = None, memeid = None):
@@ -94,10 +149,30 @@ class Upvote:
         self.timestamp = timestamp
         self.memeid = memeid
 
+    @staticmethod
     def create_upvote(userid, timestamp, memeid):
+        print(memeid)
         conn = sqlite3.connect('db/main.db')
         cur = conn.cursor()
+        cur.execute('''
+        INSERT INTO upvote (userid, timestamp, memeid) VALUES (?,?,?)
+        ''', (userid, timestamp, memeid))
+        conn.commit()
+        conn.close()
 
-#    def get_upvotes_for_memes(memeid):
-#        conn = sqlite3.connect('db/main.db')
-#        cur = conn.cursor()
+    @staticmethod
+    def get_upvotes_for_memes(memeid):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        select *
+        from upvote u
+        where memeid == ?
+        ''',(memeid,))
+        upvotes = []
+        for record in cur:
+            print("Hello world!")
+            upvote = Upvote(record[0], record[1], record[2], record[3])
+            upvotes.append(upvote)
+        conn.close()
+        return upvotes

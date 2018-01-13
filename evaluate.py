@@ -1,4 +1,6 @@
 # This file provides nodes for the parser to use.
+import html
+
 
 class TemplateError(Exception):
     pass
@@ -32,7 +34,7 @@ class PyNode(Node):
         self.text = text
 
     def returnText(self, context):
-        return str(eval(self.text, {}, context))
+        return html.escape(str(eval(self.text, {}, context)))
 
 class IfNode(Node):
     def __init__(self, predicate, group):
@@ -53,7 +55,8 @@ class ForNode(Node):
     def returnText(self, context):
         result = ""
         for i in eval(self.iterable, {}, context):
-            context[self.variable.strip()] = i
+            context["__itervar"] = i
+            exec(self.variable + " = __itervar", {}, context)
             result += self.groupnode.returnText(context)
         return result
 
