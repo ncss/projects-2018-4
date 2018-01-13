@@ -1,0 +1,14 @@
+{% include pages/header.html %}
+	   <article id="article" class="post">
+	   {% for i in range (10) %}
+			   <div>
+				<img class="dp" src={{ dp }} alt={{username}} />
+				<p class="username">{{username}}</p>
+				<p class="location">{{location}}</p>
+			   </div>
+			   <div>
+				<img src={{imgsrc}}alt= "image" />
+				<p class="caption">{{caption}}</p>
+			   </div>
+		{% end for %}	   
+	   </article>
