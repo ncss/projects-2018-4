@@ -1,18 +1,25 @@
 {% include pages/header.html %}
-<h1>Signup</h1>
+<div id = "subheader">
+<a href="/">
+<img class = "back-button" src = "static/back.png">
+</a>
+  <h1>Sign Up</h1>
+</div>
+<div class= 'content'>
     <form id = 'signup-form' enctype="multipart/form-data" method='post'>
-      <label for='username'>Username: </label>
+      <label class = 'inputt' for='username'>Username: </label>
       <input name = 'username' type = 'text' placeholder = 'Username' required>
       <br>
       <br>
-      <label for='password'>Password: </label>
+      <label class = 'inputt' for='password'>Password: </label>
       <input name = 'password' type = 'password' placeholder = 'Password' required>
       <br>
       <br>
-      <label for='bio'>Bio: </label>
+      <label class = 'inputt' for='bio'>Bio: </label>
       <input name = 'bio' type = 'bio' placeholder = 'Your Bio'>
       <input name="image" type="file" accept = "image/*;capture=camera" required>
-      <button type="submit" form="signup-form" value="Submit">Signup</button>
+      <button id = 'signupbut' type="submit" form="signup-form" value="Submit">Signup</button>
     </form>
+</div>
   </body>
 </html>
