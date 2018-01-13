@@ -1,8 +1,9 @@
 from tornado.ncss import Server, ncssbook_log
 import user
-from db import Category, Meme
+from db import Category, Meme, Person
 import base64
 from template import render_file
+import os
 
 def photo_save(user: str, caption: str, lat: str, long: str, content_type, photo):
     "This function will take information about a photo and save it to a location."
@@ -16,21 +17,31 @@ def login_handler(response):
 
 def index_handler(response):
     cookie = response.get_secure_cookie('loggedin')
-    if cookie != None:
-        cookie_split = str(cookie).split(',')
-        if cookie_split[0] == 'True':
-            response.redirect('/feed')
-        else:
-            response.redirect('/login')
+    if cookie:
+        response.redirect('/feed')
+        #cookie_split = str(cookie).split(',')
+        # if cookie_split[0] == 'True':
+            
+        # else:
+        #     response.redirect('/login')
     else:
         response.redirect('/login')
     
 
 def profile_handler(response, user):
-    if user.lower() == 'liam':
-        response.write("LIAM IS AWESOMEEEEE")
-    else:
-        response.write('This is the profile page of: ' + str(user))
+    profile_picture = '/static/test.png'
+    person = Person.get_user_by_username(user)
+
+    print(user)
+    print(person)
+
+    var_dict = {'image':profile_picture, 'name':person.name, 'bio':person.bio}
+    rendered = render_file(os.path.join('pages', 'profile.html'), var_dict)
+    response.write(rendered)
+    # if user.lower() == 'liam':
+    #     response.write("LIAM IS AWESOMEEEEE")
+    # else:
+    #     response.write('This is the profile page of: ' + str(user))
 
 #------------------
 
