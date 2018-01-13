@@ -125,7 +125,7 @@ h1{
 }
 #subheader h1 {
   display: inline;
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 button {
   background: #c50e29;
@@ -187,7 +187,7 @@ i.material-icons {
 	transition-property: background-color;
 	transition-duration: 2s;
 	transition-delay: 0s;
-} 
+}
 
 button:focus .material-icons {
 	color: var(--color-dark);
@@ -277,9 +277,9 @@ img.meme-image {
 	grid-row: 2;
 }
 
-.spinning{ 
+.spinning{
     transform-origin:50% 50%;
-    animation:2s rotateRight infinite linear; 
+    animation:2s rotateRight infinite linear;
 	max-width:70%;
 }
 

@@ -12,17 +12,17 @@
 			<p class="location" style="cursor: pointer; text-align: right;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )"><img id = 'map2' src='static/icons/map2.png'> View Location</p>
 		</div>
 		<div class = "meme-image-container">
-			<a href="{{imglink}}/{{i}}"><img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
+			<a href="{{ meme.image }}/{{i}}">todo fixme<img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
 		</div>
 		<div>
 		 <button>
 		 <i class="material-icons upvote">star</i>
 		 </button>
-		</div> 
+		</div>
 		<div class = "meta-secondary-container">
-			<p class="caption" style="text-align: left;"><strong>Caption:</strong> {{ meme.caption }}</p>
-			<p class="timestamp" style="text-align: right;"><strong>Time:</strong> {{ time_format(meme.timestamp) }}</p>
-      <p>Current upvote count: {{ check_upvotes(meme.ID) }}</p>
+			<p class="caption" style="text-align: left;">Caption: {{ meme.caption }}</p>
+			<p class="timestamp" style="text-align: left;">Time: {{ meme.timestamp }}</p>
+      <!--<p>Current upvote count: {{ check_upvotes(meme.ID) }}</p>-->
 		</div>
     <div>
       <button type="button" id="{{ meme.ID }}" name="button" class="upvote">Upvote</button>
