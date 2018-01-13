@@ -9,9 +9,22 @@
 		<div class = "meme-image-container">
 			<img class="meme-image" src="{{ meme.image }}" alt= "image" />
 		</div>
+		<div>
+		 <button>
+		 <i class="material-icons upvote">star</i>
+		 </button>
+		</div> 
 		<div class = "meta-secondary-container">
 			<p class="caption">Caption: {{ meme.caption }}</p>
 			<p class="timestamp">Time: {{ meme.timestamp }}</p>
 		</div>	   
    </article>
 {% end for %}
+<script>
+	
+	[...document.getElementsByClassName('material-icons')].forEach(elem=>{
+		elem.addEventListener("click", function(){
+			console.log ('Hello World');
+			elem.classList.toggle('upvote');
+	})});
+</script>

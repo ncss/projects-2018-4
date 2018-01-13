@@ -9,6 +9,7 @@ body{
   --color-primary: #ff5252;
   --color-light: #ff867f;
   --color-dark: #c50e29;
+  --color-green: #388e3c;
 
   --text-caption: Roboto;
   --text-logo: Impact;
@@ -162,4 +163,26 @@ img.meme-image {
 
 article.post {
 	padding: 2em 1em;
+}
+	
+
+i.material-icons {
+	color: var(--color-green);
+	transition-property: color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+}
+.upvote {
+	color: var(--color-primary);
+	transition-property: background-color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+} 
+
+button:focus .material-icons {
+	color: var(--color-dark);
+	transition-property: color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+	
 }
