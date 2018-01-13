@@ -40,16 +40,13 @@ class Category:
     def create_category(self,image, name , information):
         conn = sqlite3.connect('db/main.db')
         cur = conn.cursor()
-        allcat = get_categories(conn)
-        maxid = 0
-        for category in allcat:
-            if Category.ID > maxid:
-                maxid = Category.ID
-        maxid += 1
         cur.execute('''
-        INSERT INTO category VALUES (?,?,?,?)
-        '''(maxid,image,information,name))
+        INSERT INTO category (image, information, name) VALUES (?,?,?)
+        '''(image,information,name))
+        conn.commit()
         cur.close()
+        conn.close()
+
 
 class Meme:
     def __init__(self, ID = None, image = None, caption = None, latitude = None, longitude = None, username = None, timestamp = None, catid = None):
@@ -81,13 +78,10 @@ class Meme:
     def create_meme_post(image, caption, latitude, longitude, username, timestamp, catid):
         conn = sqlite3.connect('db/main.db')
         cur = conn.cursor()
-        allmemes = Meme.get_memes_for_category(str(catid))
-        maxid = 0
-        for meme in allmemes:
-            if Meme.ID > maxid:
-                maxid = Meme.ID
-        maxid += 1
         cur.execute('''
-        INSERT INTO memes VALUES (?,?,?,?,?,?,?,?)
-        ''', (maxid,image,caption,latitude, longitude,username,timestamp,catid))
-        cur.close()
+        INSERT INTO memes (image, caption, locationlat, locationlon, username, timestamp, catid) VALUES (?,?,?,?,?,?,?)
+        ''', (image,caption,latitude, longitude,username,timestamp,catid))
+        conn.commit()
+        lastid = cur.lastrowid
+        conn.close()
+        return lastid
