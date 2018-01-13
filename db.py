@@ -60,6 +60,21 @@ class Meme:
         self.catid = catid
         print("USERID WE GET", userid)
         self.user = Person.get_user_by_id(userid)
+    
+    @staticmethod
+    def get_meme_from_id(ID):
+        conn = sqlite3.connect('db/main.db')
+        cur = conn.cursor()
+        cur.execute('''
+        select *
+        from memes m
+        where id == ?
+        order by id desc
+        ''',(ID,)) # Dont' remove the comma in (catid,), since this must be a tuple.
+        for row in cur:
+            conn.close()
+            return Meme(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+
 
     @staticmethod
     def get_memes_for_category(catid):
