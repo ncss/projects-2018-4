@@ -192,7 +192,6 @@ img.dp {
 	max-width: 100%;
 	max-height: auto;
 }
-
 img.meme-image {
 	max-width: 100%;
 }
@@ -209,4 +208,22 @@ article.post {
 
 @keyframes rotateRight{
     100%{ transform:rotate(360deg); }
+
+}
+
+.profileimage {
+  max-width: 60%;
+  background: white;
+  border-style: solid;
+  border-color: black;
+} 
+
+.content {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  font: bold 15px arial, sans-serif;
+  margin: 7px 5px 7px 5px;
+  padding: 3px;
+  box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
 }

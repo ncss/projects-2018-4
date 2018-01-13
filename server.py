@@ -37,22 +37,28 @@ def login_handler(response):
 def logout_handler(response):
     user.logout_handler(response)
 
-def index_handler(response):
-    cookie = response.get_secure_cookie('loggedin')
-    if cookie:
-        response.redirect('/feed')
-        cookie = cookie.decode('UTF-8')
-        cookie_split = str(cookie).split(',')
-        if cookie_split[0] == 'True':
-           response.redirect('/feed')
+def requires_login(handler):
+    def handler_(response, *args, **kwargs):
+        cookie = response.get_secure_cookie('loggedin')
+        if cookie:
+            cookie = cookie.decode('UTF-8')
+            cookie_split = str(cookie).split(',')
+            if cookie_split[0] == 'True':
+                print('Added a print')
+                handler(response, *args, **kwargs)
+            else:
+                response.redirect('/login')    
         else:
-            response.redirect('/login')    
-    else:
-        response.redirect('/login')
+            response.redirect('/login')
+    return handler_
 
-
+@requires_login
+def index_handler(response):
+    response.redirect('/feed')
+    
+@requires_login
 def profile_handler(response, user):
-    profile_picture = '/static/test.png'
+    profile_picture = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
     person = Person.get_user_by_username(user)
     if not person:
         response.write('No user found with that name')
@@ -86,6 +92,7 @@ def template_example(response):
     rendered = render_file('pages/example_body.html', variables)
     response.write(rendered)
 
+@requires_login
 def upload_handler(response):
     """Handles displaying the upload form, as well as recieving the data and
     entering it into the database."""
@@ -128,6 +135,7 @@ def nearby_handler(response):
 
 # imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
 
+@requires_login
 def feed_handler(response):
     dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
     photo_list = Meme.get_memes_for_category(3)
