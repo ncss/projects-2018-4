@@ -29,7 +29,7 @@ class Category:
         select *
         from category
         where id = ?;
-        ''', (ID,))
+        ''', ID)
         for row in cur:
             cur.close()
             return Category(row[0], row[1], row[2], row[3])
@@ -52,7 +52,8 @@ class Category:
         cur.close()
 
 
-class Meme:    def __init__(self, ID = None, image = None, caption = None, latitude = None, longitude = None, username = None, timestamp = None, catid = None):
+class Meme:    
+    def __init__(self, ID = None, image = None, caption = None, latitude = None, longitude = None, username = None, timestamp = None, catid = None):
         self.ID = ID
         self.image = image
         self.caption = caption
@@ -70,7 +71,8 @@ class Meme:    def __init__(self, ID = None, image = None, caption = None, latit
         select *
         from memes m
         where catid == ?
-        ''',(catid,))        memesofcat = []
+        ''',(catid,))
+        memesofcat = []
         for row in cur:
             memesofcat.append(Meme(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
         cur.close()
