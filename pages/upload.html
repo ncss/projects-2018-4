@@ -9,12 +9,20 @@
     <p>MEME OF THE WEEK</p>
   </div>
   <form id = "upload-form" method = "post" enctype = "multipart/form-data"> 
-    <input name="username" type="text" placeholder="Username">
+    <input name="username" type="text" placeholder="Username" required>
     <input name="lat" type="text" placeholder="Latitude">
     <input name="long" type="text" placeholder="Longitude">
     <input name="photo" type="file" accept = "image/*;capture=camera" required>
     <input name="caption" type="text" placeholder="Enter Caption" required>
     <input name="location" type="text" placeholder="Enter Location" required>
   </form>
-  <button type="submit" form="upload-form" value="Submit">Submit</button>
+  <button type="submit" form="upload-form" value="Submit" id="sendbutton">Submit</button>
 </div>
+<script>
+  document.getElementById("upload-form").addEventListener("submit", disableButton);
+
+  function disableButton() {
+    document.getElementById("sendbutton").disabled = "false";
+    return true;
+  }
+</script>
