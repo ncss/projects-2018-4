@@ -11,7 +11,10 @@
 				<img class="dp" src="{{ meme.user.image }}" />
 				<strong>{{ meme.user.name }}</strong>
 			</a>
-			<p class="location" style="cursor: pointer;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )"><img id = 'map2' src='static/icons/map2.png'> View Location</p>
+			<p class="location" style="cursor: pointer;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )">
+				<img id = 'map2' src='static/icons/map2.png'> 
+				<span class="location-link">View Location</span>
+			</p>
 		</div>
 		<div class="meme-image-container">
 			<a href="/post/{{i}}"><img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
