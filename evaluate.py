@@ -1,5 +1,8 @@
 # This file provides nodes for the parser to use.
 
+class TemplateError(Exception):
+    pass
+
 class Node:
     pass
 
@@ -8,11 +11,14 @@ class GroupNode(Node):
         self.children = children
 
     def returnText(self, context):
-        avar = []
-        strr = ""
-        for node in self.children:
-            avar.append(node.returnText(context))
-        return strr.join(avar)
+        try:
+            avar = []
+            strr = ""
+            for node in self.children:
+                avar.append(node.returnText(context))
+            return strr.join(avar)
+        except NameError as e:
+            raise TemplateError("The template attmepted to render an undefined variable: {}".format(e.args), " the available variables were: {}".format(context))
 
 class TextNode(Node):
     def __init__(self, text):

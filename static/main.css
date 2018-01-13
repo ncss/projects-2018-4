@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: "Impact";
   src: url("/static/impact.ttf");
@@ -15,7 +16,7 @@ body{
   --color-text: Black;
 
 
-  margin: 45px 2px 40px 2px;
+  margin: 45px 0px 40px 0px;
   color: var(--color-text);
   background-color: (--color-bg);
 
@@ -96,7 +97,7 @@ h1{
   width: 100%;
   height: 60px;
   line-height: 60px;
-  margin: 20px 0;
+  margin: 20px 0px 20px 0px;
 }
 #subheader h1 {
   display: inline;
@@ -108,6 +109,17 @@ h1{
   left: 10px;
   height: 60px;
   width: 60px;
+}
+.upload-content{
+  margin: 10px;
+  padding: 10px;
+  background-color: pink;
+  align-content: center;
+}
+
+form input{
+  width:100%;
+  margin-top: 5px;
 }
 
 .meta-primary-container {

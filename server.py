@@ -10,13 +10,12 @@ photo = ''
 
 def photo_save(user: str, caption: str, lat: str, long: str, photo):
 
-    
+
     '''
     This function will take information about a photo and save it to a location.
     '''
-    new_meme = Meme()
-    new_meme.create_meme_post(photo, caption, lat, long, user, 'timestamp', 0)
-    
+    Meme.create_meme_post(photo, caption, lat, long, user, 'timestamp', 3)
+
     '''
     with open('files\{} - {}.txt'.format(user, caption), 'w+') as file:
         file.write(user + "\n")
@@ -36,7 +35,7 @@ def index_handler(response):
 
 #Does a thing
 def upload_handler(response):
-    f = open('upload.html', 'r')
+    f = open('demotemplate.html', 'r')
     html = f.read()
     global filename, content_type, photo
     username = response.get_field('username')
@@ -104,7 +103,7 @@ def template_upload(response):
     variables = {
         'title': 'A template example',
         'friends': ['Bella', 'Joel', 'Jaxon', 'Owen'],
-        'src': 'test.png'
+        'src': '/static/test.png'
     }
     rendered = render_file('upload.html', variables)
     response.write(rendered)
@@ -113,13 +112,14 @@ def index_example(response):
     response.write(render_file('pages/index.html', {}))
 
 def feed_frontend_dev(response):
-	dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
-	username = 'drjc'
-	location = '101.11, 101.2'
-	caption = 'Hello world its me'
-	imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
-	rendered = render_file('pages/feed.html', {"dp": dp, 'username': username, 'location': location, 'caption': caption, 'imgsrc': imgsrc})
-	response.write(rendered)
+    dp = 'https://www.transparenthands.org/wp-content/themes/transparenthands/images/donor-icon.png'
+    username = 'drjc'
+    latitude, longitude = '', ''
+    caption = 'Hello world its me'
+    photo_list = Meme.get_memes_for_category(3)
+    imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
+    rendered = render_file('pages/feed.html', {"dp": dp, 'username': username, 'latitude': latitude, 'longitude': longitude, 'caption': caption, 'image': imgsrc, 'timestamp':'', 'photo_list': photo_list})
+    response.write(rendered)
 
 server = Server()
 

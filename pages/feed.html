@@ -1,18 +1,17 @@
 {% include pages/header.html %}
-		{% for i in range (10) %}
-	   <article id="article" class="post">
-			<div class = "meta-primary-container">
-				<img class="dp" src="{{ dp }}" />
-				<p class="username">memepo</p>
-				<p class="location">113.2 114.5</p>
-			</div>
-			<div class = "meme-image-container">
-				<img class="meme-image" src="{{imgsrc}}" alt= "image" />
-			</div>
-			<div class = "meta-secondary-container">
-				<p class="caption">Look at this wacky pic!!</p>
-				<p class="timestamp">Sep 12</p>
-			</div>	   
-	   </article>
-	   {% end for %}
-	
+{% for meme in photo_list %}
+   <article id="article" class="post">
+		<div class = "meta-primary-container">
+			<img class="dp" src="{{ dp }}" />
+			<p class="username">"{{ meme.username }}"</p>
+			<p class="location">"{{ meme.latitude, meme.longitude }}"</p>
+		</div>
+		<div class = "meme-image-container">
+			<img class="meme-image" src="{{ meme.image }}" alt= "image" />
+		</div>
+		<div class = "meta-secondary-container">
+			<p class="caption">{{ meme.caption }}</p>
+			<p class="timestamp">{{ meme.timestamp }}</p>
+		</div>	   
+   </article>
+{% end for %}
