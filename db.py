@@ -49,15 +49,17 @@ class Category:
 
 
 class Meme:
-    def __init__(self, ID = None, image = None, caption = None, latitude = None, longitude = None, username = None, timestamp = None, catid = None):
+    def __init__(self, ID = None, image = None, caption = None, latitude = None, longitude = None, userid = None, timestamp = None, catid = None):
         self.ID = ID
         self.image = image
         self.caption = caption
         self.latitude = latitude
         self.longitude = longitude
-        self.username = username
+        self.userid = userid
         self.timestamp = timestamp
         self.catid = catid
+        print("USERID WE GET", userid)
+        self.username = Person.get_user_by_id(userid).name
 
     @staticmethod
     def get_memes_for_category(catid):
@@ -76,16 +78,20 @@ class Meme:
         return memesofcat
 
     @staticmethod
-    def create_meme_post(image, caption, latitude, longitude, userid, timestamp, catid):
+    def create_meme_post(image, caption, latitude, longitude, username, timestamp, catid):
         conn = sqlite3.connect('db/main.db')
         cur = conn.cursor()
+        userid = Person.get_user_by_username(username).id
         cur.execute('''
         INSERT INTO memes (image, caption, locationlat, locationlon, userid, timestamp, catid) VALUES (?,?,?,?,?,?,?)
-        ''', (image, caption, latitude, longitude, userid, timestamp, catid))
+        ''', (image, caption, latitude, longitude, userid, timestamp, catid)) #Must be a tuple. do not delete the brackets or comma
+
         conn.commit()
         lastid = cur.lastrowid
         conn.close()
         return lastid
+
+
 
 
 class Person:

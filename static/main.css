@@ -4,11 +4,17 @@
   src: url("/static/impact.ttf");
 }
 
+#signup-form {
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
 body{
   /*Defining Variables*/
   --color-primary: #ff5252;
   --color-light: #ff867f;
   --color-dark: #c50e29;
+  --color-green: #388e3c;
 
   --text-caption: Roboto;
   --text-logo: Impact;
@@ -110,8 +116,8 @@ h1{
 #subheader{
   background-color: #ff867f;
   width: 100%;
-  height: 60px;
-  line-height: 60px;
+  height: 50px;
+  line-height: 50px;
   padding: 5px;
   margin-left: -2px;
   box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
@@ -119,7 +125,7 @@ h1{
 }
 #subheader h1 {
   display: inline;
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 button {
   background: #c50e29;
@@ -137,12 +143,13 @@ button {
 #sendbutton{
   height: 50px;
   width: 100px;
+  margin-top: 10px;
 }
 
 .back-button{
   position: absolute;
   left: 10px;
-  height: 30px;
+  height: 25px;
   width: 50px;
   padding-top: 15px;
 
@@ -157,25 +164,78 @@ form input{
   margin: 5px 0px 5px 0px;
 }
 
-.meta-primary-container {
+article.post {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+	padding: 2em 1em;
+  margin-top: 5px;
+}
+
+img.meme-image {
+	max-width: 100%;
+}
+
+i.material-icons {
+	color: var(--color-green);
+	transition-property: color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+}
+.upvote {
+	color: var(--color-primary);
+	transition-property: background-color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+}
+
+button:focus .material-icons {
+	color: var(--color-dark);
+	transition-property: color;
+	transition-duration: 2s;
+	transition-delay: 0s;
+}
+
+article.post {
+	padding: 2em 1em;
 	display: grid;
-	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: 10% 50% 30%;
+	box-shadow: 0px 5px 0px 0px black;
+}
+
+.meta-primary-container {
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-row: 1;
 }
 
 .dp {
-  grid-column: 1 / 4;
-  grid-row: 1;
+  grid-column: 1; /*Second number is non-inclusive (like splicing a list).*/
+	max-height: 50px;
+  visibility: collapse;
+  float: left;
+  width: auto;
 }
 
 .username {
-  grid-column: 1 / 4 ;
-  grid-row: 2;
+  grid-column: 2;
+  text-decoration: none;
+  color: black;
+  padding-top: 20px;
+  text-align: left;
+  float: left;
   color: inherit;
+  width: auto;
 }
 
 .location {
-  grid-column: 1 / 4;
-  grid-row: 3;
+	grid-column: 3;
+  text-align: right;
+  float: left;
+  width: auto;
+}
+
+.meme-image {
+  grid-row: 2;
 }
 
 .upvote {
@@ -183,27 +243,34 @@ form input{
   grid-row: 4;
 }
 
-
 .meta-secondary-container {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-row: 3;
 }
 
 .caption {
-	grid-column: 1 / 8;
+	grid-column: 1;
+	text-align: left;
+}
+
+#map2{
+  width: 40px;
 }
 
 .timestamp {
-  grid-column: 1 / 4;
-  grid-row: 4;
+	grid-column: 3;
+	text-align: right;
 }
 
 .lat {
 	display: none;
+	opacity: 0;
 }
 
 .long {
 	display: none;
+	opacity: 0;
+>>>>>>> master
 }
 
 
@@ -218,18 +285,13 @@ img.dp {
 }
 
 img.meme-image {
-  width: 100%;
+  max-width: 100%;
   height: 100%;
 }
 
-article.post {
-	padding: 2em 1em;
-  margin-top: 5px;
-}
-
-.spinning{ 
+.spinning{
     transform-origin:50% 50%;
-    animation:2s rotateRight infinite linear; 
+    animation:2s rotateRight infinite linear;
 	max-width:70%;
 }
 
@@ -253,11 +315,19 @@ article.post {
 }
 
 .content {
-  background: var(--color-primary);
+  background: var(--color-light);
   color: white;
-  border-color: var(--color-primary);
   font: bold 15px arial, sans-serif;
-  margin: 7px 5px 7px 5px;
-  padding: 3px;
+  margin: 5%;
+  padding: 5%;
   box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+}
+
+.inputt{
+  margin-top: 50px;
+}
+
+#signupbut {
+  margin-bottom: 25px;
+  margin-top: 20px;
 }
