@@ -36,7 +36,7 @@ def index_handler(response):
 
 #Does a thing
 def upload_handler(response):
-    f = open('upload.html', 'r')
+    f = open('demotemplate.html', 'r')
     html = f.read()
     global filename, content_type, photo
     username = response.get_field('username')
