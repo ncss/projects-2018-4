@@ -35,7 +35,6 @@ p{
   font-family: var(--text-caption);
 }
 
-
 nav{
   position: fixed;
   bottom:0px;
@@ -78,8 +77,6 @@ nav a{
 nav * a img{
   height: 35px;
 }
-
-
 
 header{
   background-color: var(--color-dark);
@@ -229,7 +226,6 @@ article.post {
 
 .caption {
 	grid-column: 1;
-	text-align: left;
 }
 
 #map2{
@@ -238,7 +234,6 @@ article.post {
 
 .timestamp {
 	grid-column: 3;
-	text-align: right;
 }
 
 .lat {
@@ -249,7 +244,6 @@ article.post {
 .long {
 	display: none;
 	opacity: 0;
->>>>>>> master
 }
 
 
