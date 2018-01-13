@@ -23,6 +23,15 @@ def format_time(date):
     except ValueError:
         return date
 
+def get_user_from_cookie(response):
+    cookie = response.get_secure_cookie('loggedin')
+    if cookie:
+        cookie = cookie.decode('UTF-8')
+        cookie_split = str(cookie).split(',')
+        return cookie_split[1]
+    else:
+        return 'Username not defined in cookie'
+
 
 def photo_save(user: str, caption: str, lat: str, long: str, base64blob):
     "This function will take information about a photo and save it to a location."
@@ -96,9 +105,9 @@ def template_example(response):
 def upload_handler(response):
     """Handles displaying the upload form, as well as recieving the data and
     entering it into the database."""
-    if response.get_field("username"):
+    if response.get_field("caption"):
         # The "username" field is not empty, so we are recieving data
-        username = response.get_field('username')
+        username = get_user_from_cookie(response)
         caption = response.get_field('caption')
         latitude = response.get_field('lat')
         longitude = response.get_field('long')
