@@ -104,7 +104,7 @@ def template_upload(response):
     variables = {
         'title': 'A template example',
         'friends': ['Bella', 'Joel', 'Jaxon', 'Owen'],
-        'src': 'test.png'
+        'src': '/static/test.png'
     }
     rendered = render_file('upload.html', variables)
     response.write(rendered)
