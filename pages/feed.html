@@ -6,16 +6,18 @@
 {% for i, meme in enumerate(photo_list) %}
 
    <article id="article" class="post">
-		<div class = "meta-primary-container">
-			<a class="username" style="text-align: left;" href="/profile/{{ meme.user.name }}">
+		<div class="meta-primary-container">
+			<a class="username" href="/profile/{{ meme.user.name }}">
 				<img class="dp" src="{{ meme.user.image }}" />
 				<strong>{{ meme.user.name }}</strong>
 			</a>
-			<p class="location" style="cursor: pointer; text-align: right;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )"><img id = 'map2' src='static/icons/map2.png'> View Location</p>
-			<p class="upvote">{{ check_upvotes(meme.ID) }}</p>
-			<div class="meme-image-container">
-				<a href="/post/{{i}}"><img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
-			</div>
+			<p class="location" style="cursor: pointer;" onclick="map.open( '{{ meme.latitude }}', '{{ meme.longitude }}' )">
+				<img id = 'map2' src='static/icons/map2.png'> 
+				<span class="location-link">View Location</span>
+			</p>
+		</div>
+		<div class="meme-image-container">
+			<a href="/post/{{i}}"><img class="meme-image" src="{{ meme.image }}" alt= "image" /></a>
 		</div>
 		<div class="meta-secondary-container">
 			<p class="caption">{{ meme.caption }}</p>
