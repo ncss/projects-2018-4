@@ -39,6 +39,10 @@
     document.body.appendChild(wrapper);
 
     data = {lat: parseFloat(lat), lng: parseFloat(lng)}
+    if (isNaN(data.lat) || isNaN(data.lng)) {
+      console.warn('Cannot open a map using no location!');
+      return;
+    }
     marker.setMap(null);
 
     marker = new google.maps.Marker({
@@ -53,7 +57,7 @@
       wrapper.style.opacity = "1";
       wrapper.style.right = "";
       wrapper.style.bottom = "";
-    }, 1000)
+    }, 100)
   }
 
   window.map = {
