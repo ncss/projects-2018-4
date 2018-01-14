@@ -68,7 +68,6 @@ def requires_login(handler):
             response.redirect('/login')
     return handler_
 
-@requires_login
 def index_handler(response):
     response.redirect('/feed')
 
@@ -151,7 +150,6 @@ def nearby_handler(response):
 
 # imgsrc = 'http://i0.kym-cdn.com/entries/icons/mobile/000/006/199/responsibility12(alternate).jpg'
 
-@requires_login
 def feed_handler(response):
     dp = 'http://i0.kym-cdn.com/profiles/icons/big/000/132/880/awesome%20face%20shrug.jpg'
     photo_list = Meme.get_memes_for_category(3)

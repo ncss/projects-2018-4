@@ -185,7 +185,6 @@ class Upvote:
         ''',(memeid,))
         upvotes = []
         for record in cur:
-            print("Hello world!")
             upvote = Upvote(record[0], record[1], record[2], record[3])
             upvotes.append(upvote)
         conn.close()
