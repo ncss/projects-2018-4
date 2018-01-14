@@ -58,7 +58,6 @@ class Meme:
         self.userid = userid
         self.timestamp = timestamp
         self.catid = catid
-        print("USERID WE GET", userid)
         self.user = Person.get_user_by_id(userid)
     
     @staticmethod
@@ -156,7 +155,6 @@ class Person:
         return lastid
 
     def get_upvote_count(self):
-        print(Upvote.get_upvotes_for_memes(self.ID))
         return str(len(Upvote.get_upvotes_for_memes(self.ID)))
 
 class Upvote:
@@ -168,7 +166,6 @@ class Upvote:
 
     @staticmethod
     def create_upvote(userid, timestamp, memeid):
-        print(memeid)
         conn = sqlite3.connect('db/main.db')
         cur = conn.cursor()
         cur.execute('''

@@ -11,7 +11,6 @@ def login_handler(response):
   global username, password
   username = response.get_field('username')
   password = response.get_field('password')
-  print(username, password)
   if username:
     if database_login_handler(username, password, response):
       cookie = 'True,'+username
@@ -23,7 +22,6 @@ def login_handler(response):
 
 
 def database_login_handler(username, password, response):
-  print("Details Accepted")
   person = Person.get_user_by_username(username)
   if person:
     if person.password == password:

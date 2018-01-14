@@ -61,7 +61,6 @@ def requires_login(handler):
             cookie = cookie.decode('UTF-8')
             cookie_split = str(cookie).split(',')
             if cookie_split[0] == 'True':
-                print('Added a print')
                 handler(response, *args, **kwargs)
             else:
                 response.redirect('/login')
@@ -176,7 +175,6 @@ def check_upvote(response, memeid):
     upvote_data = Upvote.get_upvotes_for_memes(memeid)
     response.write("Yay!!")
     response.write(str(len(upvote_data)))
-    print(upvote_data)
 
 def check_upvote_l(memeid):
     upvote_data = Upvote.get_upvotes_for_memes(memeid)
